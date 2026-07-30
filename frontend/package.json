@@ -17,6 +17,7 @@
     "start": "node .output/server/index.mjs"
   },
   "dependencies": {
+    "@strapi/client": "^1.6.2",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",
     "@tanstack/react-router": "latest",
