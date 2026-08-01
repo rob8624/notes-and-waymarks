@@ -23,6 +23,11 @@
     },
     "heading": {
       "type": "string"
+    },
+    "menu": {
+      "type": "component",
+      "component": "navigation.nav-link",
+      "repeatable": true
     }
   }
 }

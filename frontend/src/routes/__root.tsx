@@ -4,7 +4,28 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import appCss from '../styles.css?url'
 
+//Custom components
+import Header from '#/components/header'
+import Footer from '#/components/footer'
+
+//Api calls
+import { getHeaderData, getFooterData} from '#/data/server-functions'
+
+
 export const Route = createRootRoute({
+  
+  loader: async () => {
+    const [header, footer] = await Promise.all(
+      [
+        getHeaderData(),
+        getFooterData()
+      ])
+    return {header: header.data, footer: footer.data}
+  },
+  
+  
+  
+  
   head: () => ({
     meta: [
       {
@@ -35,7 +56,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
+        <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto]">
+          <Header />
+          {children}
+          <Footer />
+        </div>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
@@ -47,6 +72,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             },
           ]}
         />
+        
         <Scripts />
       </body>
     </html>
