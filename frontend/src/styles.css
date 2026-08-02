@@ -1,9 +1,11 @@
 
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
 
 @theme {
   --font-cabin: "Cabin", sans-serif;
+  --font-albert: "Albert Sans", sans-serif;
 }
 
 * {
