@@ -1,11 +1,21 @@
-import { getFooterData, getHeaderData } from "./server-functions"
+import { getFooterData, getHeaderData, getPostsData, getSiteSettings } from "./server-functions"
 
 export const strapiAPI = {
-    header: {
+    header : {
         getHeaderData
     },
     
-    footer: {
+    footer :  {
         getFooterData
+    },
+
+    siteSettings : { 
+
+        getSiteSettings
+    }, 
+    
+    posts:
+    {
+        getPostsData
     }
 }

@@ -1,7 +1,4 @@
-
-
-//STRAPI DATA TYPES
-
+// STRAPI DATA TYPES
 
 interface IStrapiFocalPoint {
   x: number
@@ -67,39 +64,68 @@ interface IStrapiBaseEntity {
 }
 
 interface IMenuItem {
-    id: number
-    label: string
-    url: string
+  id: number
+  label: string
+  url: string
 }
 
 interface IHeaderData extends IStrapiBaseEntity {
-  
   heading: string
   logo: IStrapiMedia
-  menu: Array<IMenuItem>
-  
-  
+  menu: IMenuItem[]
 }
-
 
 interface IFooterData extends IStrapiBaseEntity {
-  
   message: string
-  
 }
 
+interface ISiteSettingsData extends IStrapiBaseEntity {
+  articleMessage: string
+  momentImage: IStrapiMedia
+}
 
+interface ICategoriesData extends IStrapiBaseEntity {
+  name: string
+  slug: string
+}
 
+export interface IPostData extends IStrapiBaseEntity {
+  title: string
+  slug: string
+  featuredImage: IStrapiMedia
+  categories: ICategoriesData[]
+  summary: string
+}
 
-//API RESPONSE TYPES
+// API RESPONSE TYPES
 
-export interface IHeaderResponse {
-  data: IHeaderData
+// Wrapper for Strapi "single type" responses (Header, Footer, Site Settings)
+// data is a single object, meta is always empty
+interface IStrapiSingleResponse<T> {
+  data: T
   meta: Record<string, never>
 }
 
-
-export interface IFooterResponse {
-    data: IFooterData
-    meta: Record<string, never>
+// Pagination shape Strapi returns on every "collection type" response
+interface IStrapiPaginationMeta {
+  pagination: {
+    page: number
+    pageSize: number
+    pageCount: number
+    total: number
+  }
 }
+
+// Wrapper for Strapi "collection type" responses (Posts, Categories)
+// data is an array, meta contains real pagination info
+interface IStrapiCollectionResponse<T> {
+  data: T[]
+  meta: IStrapiPaginationMeta
+}
+
+export type IHeaderResponse = IStrapiSingleResponse<IHeaderData>
+export type IFooterResponse = IStrapiSingleResponse<IFooterData>
+export type ISiteSettingsResponse = IStrapiSingleResponse<ISiteSettingsData>
+
+export type IPostsResponse = IStrapiCollectionResponse<IPostData>
+export type ICategoriesResponse = IStrapiCollectionResponse<ICategoriesData>

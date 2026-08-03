@@ -1,4 +1,4 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, Link } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
@@ -9,18 +9,25 @@ import Header from '#/components/header'
 import Footer from '#/components/footer'
 
 //Api calls
-import { getHeaderData, getFooterData} from '#/data/server-functions'
+import { getHeaderData, getFooterData, getSiteSettings, getPostsData} from '#/data/server-functions'
 
 
 export const Route = createRootRoute({
   
   loader: async () => {
-    const [header, footer] = await Promise.all(
+    const [header, footer, siteSettings, posts] = await Promise.all(
       [
         getHeaderData(),
-        getFooterData()
+        getFooterData(),
+        getSiteSettings(),
+        getPostsData()
       ])
-    return {header: header.data, footer: footer.data}
+    return {
+      header: header.data, 
+      footer: footer.data, 
+      siteSettings:siteSettings.data, 
+      posts:posts.data
+    }
   },
   
   
@@ -46,6 +53,17 @@ export const Route = createRootRoute({
       },
     ],
   }),
+  notFoundComponent: () => (
+    <div className="flex flex-col items-center justify-center py-20 text-center">
+      <h1 className="text-4xl font-bold font-albert">404</h1>
+      <p className="font-cabin text-gray-500 italic mt-2">
+        Sorry, that page doesn't exist.
+      </p>
+      <Link to="/" className="mt-4 underline">
+        Back home
+      </Link>
+    </div>
+  ),
   shellComponent: RootDocument,
 })
 
