@@ -1,6 +1,7 @@
-import { HeadContent, Scripts, createRootRoute, Link } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, Link, stripSearchParams } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { z } from 'zod'
 
 import appCss from '../styles.css?url'
 
@@ -9,24 +10,30 @@ import Header from '#/components/header'
 import Footer from '#/components/footer'
 
 //Api calls
-import { getHeaderData, getFooterData, getSiteSettings, getPostsData} from '#/data/server-functions'
+import { getHeaderData, getFooterData, getSiteSettings } from '#/data/server-functions'
+
+
+
+
+
 
 
 export const Route = createRootRoute({
   
+ 
   loader: async () => {
-    const [header, footer, siteSettings, posts] = await Promise.all(
+    const [header, footer, siteSettings, ] = await Promise.all(
       [
         getHeaderData(),
         getFooterData(),
         getSiteSettings(),
-        getPostsData()
+        
       ])
     return {
       header: header.data, 
       footer: footer.data, 
       siteSettings:siteSettings.data, 
-      posts:posts.data
+      
     }
   },
   

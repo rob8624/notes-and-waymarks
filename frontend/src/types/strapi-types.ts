@@ -79,12 +79,21 @@ interface IFooterData extends IStrapiBaseEntity {
   message: string
 }
 
-interface ISiteSettingsData extends IStrapiBaseEntity {
-  articleMessage: string
-  momentImage: IStrapiMedia
+export interface IHomePageBook extends IStrapiBaseEntity {
+  bookName : string
+  author: string
+  summary: string
+  image: IStrapiMedia
 }
 
-interface ICategoriesData extends IStrapiBaseEntity {
+export interface ISiteSettingsData extends IStrapiBaseEntity {
+  articleMessage: string
+  momentImage: IStrapiMedia
+  homePageBook: IHomePageBook
+  
+}
+
+export interface ICategoriesData extends IStrapiBaseEntity {
   name: string
   slug: string
 }

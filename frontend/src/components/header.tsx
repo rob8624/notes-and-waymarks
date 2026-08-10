@@ -8,7 +8,7 @@ export default function Header() {
 
     return(
     <header>
-        <div className='flex flex-col items-center sm:flex-row sm:justify-between sm:min-h-30 '>
+        <div className='flex flex-col items-center sm:flex-row sm:justify-between  '>
             <img className="sm:self-end mt-5" src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
              <nav className='sm:self-end'>

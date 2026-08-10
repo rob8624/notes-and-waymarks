@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_feature_current_reads",
+  "info": {
+    "displayName": "Current Read"
+  },
+  "options": {},
+  "attributes": {
+    "bookName": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "author": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
