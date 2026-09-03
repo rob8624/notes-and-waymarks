@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_images",
+  "info": {
+    "displayName": "image"
+  },
+  "options": {},
+  "attributes": {
+    "singleImage": {
+      "type": "component",
+      "component": "images.image",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

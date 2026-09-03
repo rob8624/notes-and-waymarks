@@ -36,6 +36,19 @@
     },
     "summary": {
       "type": "text"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "posts"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.richtext",
+        "blocks.image"
+      ]
     }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_images_image_settings",
+  "info": {
+    "displayName": "Image Settings"
+  },
+  "options": {},
+  "attributes": {
+    "imageSize": {
+      "type": "enumeration",
+      "default": "medium",
+      "enum": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    "imageBorder": {
+      "type": "boolean",
+      "default": false
+    },
+    "roundedBorder": {
+      "type": "boolean",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "imageBorder"
+            },
+            true
+          ]
+        }
+      },
+      "default": false
+    },
+    "grayscale": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_images_images",
+  "info": {
+    "displayName": "image"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "settings": {
+      "type": "component",
+      "component": "images.image-settings",
+      "repeatable": false,
+      "required": true
+    },
+    "imageCaption": {
+      "type": "component",
+      "component": "images.image-caption",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

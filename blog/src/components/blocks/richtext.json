@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_richtexts",
+  "info": {
+    "displayName": "Richtext"
+  },
+  "options": {},
+  "attributes": {
+    "richtext": {
+      "type": "customField",
+      "customField": "plugin::strapi-tiptap-editor.strapi-tiptap-editor"
+    }
+  },
+  "config": {}
+}

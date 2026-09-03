@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_images_image_captions",
+  "info": {
+    "displayName": "Image Caption"
+  },
+  "options": {},
+  "attributes": {
+    "caption": {
+      "type": "text"
+    },
+    "position": {
+      "type": "enumeration",
+      "default": "bottom",
+      "enum": [
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    }
+  },
+  "config": {}
+}
