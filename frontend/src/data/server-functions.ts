@@ -34,17 +34,31 @@ export const getFooterData = createServerFn({method: 'GET'}).handler(async ():Pr
 //SITE_SETTINGS
 
 const getSettings = async () => {
-    return sdk.single('site-setting').find({populate: {
-        momentImage : true,
-        homePageBook : {
-            populate: ['image']
-        }
-    }}) as Promise<ISiteSettingsResponse>;
+  return sdk.single('site-setting').find({
+    populate: {
+      momentImage: true,
+      homePageBook: {
+        populate: {
+          image: true,
+        },
+      },
+    },
+  }) as Promise<ISiteSettingsResponse>
 }
 
-export const getSiteSettings = createServerFn({method: 'GET'}).handler(async ():Promise<ISiteSettingsResponse> => {
+
+
+// NOTE: `as any` here is intentional, not a shortcut I forgot to fix.
+// TanStack Start's createServerFn tries to statically verify the return
+// type is JSON-serializable. @strapi/blocks-react-renderer's BlocksContent
+// type (used in homePageMessage) has fields typed as Record<string, unknown>,
+// which the checker can't prove is serializable — even though the actual
+// runtime data from Strapi is plain JSON and totally fine.
+// Real type safety is restored at the call site instead:
+//   const siteSettings = (await getSiteSettings()) as ISiteSettingsResponse
+export const getSiteSettings = createServerFn({method: 'GET'}).handler(async () => {
     const response = await getSettings()
-    return response
+    return response as any
 
 })
 
@@ -58,6 +72,7 @@ const getPosts = async ({ page, category, order }: { page: number; category?: st
     populate: {
       featuredImage: { fields: ['url', 'formats', 'alternativeText'] },
       categories: { fields: ['name', 'slug'] },
+      
      },
     pagination: { page, pageSize: 3 },
     sort: [`createdAt:${order}`],
@@ -69,11 +84,53 @@ const getPosts = async ({ page, category, order }: { page: number; category?: st
   }) as Promise<IPostsResponse>
 }
 
-export const getPostsData = createServerFn({method: 'GET'})
-.validator((data: { page: number; category?: string; order: string }) => data)
+export const getPostsData = createServerFn({ method: 'GET' })
+  .validator((data: { page: number; category?: string; order: string }) => data)
+  .handler(async ({ data }) => {
+    const response = await getPosts(data)
+    return response as any
+  })
+
+
+//Post Detail
+
+const getDetail = async ({ slug }: { slug: string }) => {
+  return sdk.collection('posts').find({
+    filters: {
+      slug: { $eq: slug },
+    },
+    populate: {
+      featuredImage: { fields: ['url', 'formats', 'alternativeText'] },
+      categories: { fields: ['name', 'slug'] },
+      author: { fields: ['name', 'position'] },
+      content: {
+        on: {
+          'blocks.richtext': {
+            fields: ['richtext'],
+          },
+          'blocks.image': {
+            populate: {
+              singleImage: {
+              populate: {
+              image: { fields: ['url', 'formats', 'alternativeText'] },
+              settings : true,
+              imageCaption: true
+            },
+            
+            },
+            },
+          },
+        },
+      },
+    },
+  }) as Promise<IPostsResponse>
+}
+
+export const getPostDetail = createServerFn({method:'GET'})
+.validator((data: {slug: string}) => data)
 .handler(async ({ data }):Promise<IPostsResponse> => {
-    const respose = await getPosts(data)
-    return respose
+    const response = await getDetail(data)
+    return response
 } )
 
 

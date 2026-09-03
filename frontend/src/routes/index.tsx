@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { stripSearchParams } from '@tanstack/react-router'
 import { Route as RootRoute } from '@/routes/__root'
-import { Link } from '@tanstack/react-router'
+
 import {  z } from 'zod'
 
 //server functions
@@ -14,7 +14,8 @@ import { Pagination } from '#/components/pagination'
 import { Category } from '#/components/category'
 import { ImageOfTheMoment } from '#/components/imageOfTheMoment'
 import { HomePageBook } from '#/components/homePageBook'
-
+import { HomePageMessage } from '#/components/homePageMessage'
+import type { IPostData } from '#/types/strapi-types'
 
 const defaultValues = {
   page: 1,
@@ -78,7 +79,7 @@ function Home() {
             <Pagination page={search.page} totalPages={totalPages}/>
  
             <div className='flex gap-2 flex-col justify-evenly h-full'>
-              {posts.map(posts => <PostCard key={posts.documentId} {...posts}/>)}
+              {posts.map((post: IPostData) => <PostCard key={posts.documentId} {...post}/>)}
               
             </div>
             
@@ -90,6 +91,9 @@ function Home() {
         
         {/* sidebar */}
         <section className='order-1 lg:order-2 flex flex-col gap-2 mb-10 lg:mb-0 sm:h-[90%]'>
+          <div className='flex justify-center items-center text-center sm:flex-none'>
+            <HomePageMessage data={siteSettings.homePageMessage}/>
+          </div>
           <div className=' flex-1 order-2 md:order-1'>
 
             
@@ -100,7 +104,7 @@ function Home() {
               
             </div>
           </div>
-          <div className='flex-1'> This could be my welcome</div>
+          
           <div className='flex-1 flex  gap-5 flex-col sm:items-start sm:justify-start order-1 md:order-2'>
             <div className='flex-1 '>
               <HomePageBook  data={siteSettings.homePageBook} /> 

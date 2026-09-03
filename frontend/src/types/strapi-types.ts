@@ -1,5 +1,8 @@
 // STRAPI DATA TYPES
 
+import { type BlocksContent } from '@strapi/blocks-react-renderer';
+import type { DynamicZoneBlock } from './block-types';
+
 interface IStrapiFocalPoint {
   x: number
   y: number
@@ -29,7 +32,7 @@ interface IStrapiMediaFormats {
   thumbnail?: IStrapiMediaFormat
 }
 
-interface IStrapiMedia {
+export interface IStrapiMedia {
   id: number
   documentId: string
   name: string
@@ -55,7 +58,7 @@ interface IStrapiMedia {
   publishedAt: string
 }
 
-interface IStrapiBaseEntity {
+export interface IStrapiBaseEntity {
   id: number
   documentId: string
   createdAt: string
@@ -90,6 +93,7 @@ export interface ISiteSettingsData extends IStrapiBaseEntity {
   articleMessage: string
   momentImage: IStrapiMedia
   homePageBook: IHomePageBook
+  homePageMessage : BlocksContent
   
 }
 
@@ -104,6 +108,16 @@ export interface IPostData extends IStrapiBaseEntity {
   featuredImage: IStrapiMedia
   categories: ICategoriesData[]
   summary: string
+  author: IAuthorData | null
+  content: DynamicZoneBlock[]
+}
+
+
+export interface IAuthorData extends IStrapiBaseEntity {
+  name: string,
+  position: string,
+  image: IStrapiMedia
+
 }
 
 // API RESPONSE TYPES
@@ -125,6 +139,19 @@ interface IStrapiPaginationMeta {
   }
 }
 
+
+export interface IImageSettings  {
+  imageSize: 'small' | 'medium' | 'large'
+  imageBorder: boolean
+  roundedBorder: boolean
+  grayscale: boolean
+}
+
+export interface IImageCaption {
+  caption: string
+  position: 'top' |'bottom' | 'left' | 'right'
+}
+
 // Wrapper for Strapi "collection type" responses (Posts, Categories)
 // data is an array, meta contains real pagination info
 interface IStrapiCollectionResponse<T> {
@@ -135,6 +162,5 @@ interface IStrapiCollectionResponse<T> {
 export type IHeaderResponse = IStrapiSingleResponse<IHeaderData>
 export type IFooterResponse = IStrapiSingleResponse<IFooterData>
 export type ISiteSettingsResponse = IStrapiSingleResponse<ISiteSettingsData>
-
 export type IPostsResponse = IStrapiCollectionResponse<IPostData>
 export type ICategoriesResponse = IStrapiCollectionResponse<ICategoriesData>

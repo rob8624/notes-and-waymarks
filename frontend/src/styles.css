@@ -8,6 +8,8 @@
   --color-primary: #E0FAFF;
 }
 
+@plugin "@tailwindcss/typography";
+
 * {
   box-sizing: border-box;
 }
@@ -15,13 +17,13 @@
 html,
 body,
 #app {
-  max-height: 100dvh;
+  
 }
 
 body {
  
   margin: 0;
   width: 100%;
-  padding : 10px;
+  
 }
 

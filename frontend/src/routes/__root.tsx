@@ -1,7 +1,7 @@
 import { HeadContent, Scripts, createRootRoute, Link, stripSearchParams } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { z } from 'zod'
+import type { ISiteSettingsResponse } from '#/types/strapi-types'
 
 import appCss from '../styles.css?url'
 
@@ -20,22 +20,26 @@ import { getHeaderData, getFooterData, getSiteSettings } from '#/data/server-fun
 
 export const Route = createRootRoute({
   
- 
-  loader: async () => {
-    const [header, footer, siteSettings, ] = await Promise.all(
-      [
-        getHeaderData(),
-        getFooterData(),
-        getSiteSettings(),
-        
-      ])
+ loader: async () => {
+  try {
+    const [header, footer, siteSettingsRaw] = await Promise.all([
+      getHeaderData(),
+      getFooterData(),
+      getSiteSettings(),
+    ])
+
+    const siteSettings = siteSettingsRaw as ISiteSettingsResponse
+
     return {
-      header: header.data, 
-      footer: footer.data, 
-      siteSettings:siteSettings.data, 
-      
+      header: header.data,
+      footer: footer.data,
+      siteSettings: siteSettings.data,
     }
-  },
+  } catch (err) {
+    console.error('ROOT LOADER FAILED:', err)
+    throw err
+  }
+},
   
   
   
@@ -81,7 +85,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto]">
+        <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] p-1">
           <Header />
           {children}
           <Footer />

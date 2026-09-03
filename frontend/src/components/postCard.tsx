@@ -1,3 +1,5 @@
+
+import { Link } from '@tanstack/react-router'
 import type { IPostData } from "#/types/strapi-types"
 
 
@@ -14,9 +16,10 @@ export function PostCard({title, slug, categories, summary, featuredImage}: IPos
                     </div>
                     <div className="flex-2 font-albert text-grey-100">{summary}</div>
                     <div>{categories.map(item => item.name)}</div>
+                    
                 </div> 
             <div className="flex-1 flex justify-end items-end p-4">
-                    <button>Read</button>
+                    <Link to="/posts/$postSlug" params={{ postSlug: slug }}>Read</Link>
                 </div>
             </div>
         </div>

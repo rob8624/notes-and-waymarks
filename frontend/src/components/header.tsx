@@ -21,7 +21,7 @@ export default function Header() {
         </div>
         <div className='h-5 bg-primary rounded-2xl'></div>
         <div className='flex justify-center sm:block'>
-            <div className='font-cabin sm:text-2xl text-gray-600'>{header.heading}</div>
+            <div className='font-cabin text-3xl sm:text-2xl text-gray-600'>{header.heading}</div>
         </div>
         
     </header>

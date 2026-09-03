@@ -6,23 +6,33 @@ interface CategoryProps {
   activeCategory: string | undefined
 }
 
+const buttonStyles = {
+  shared: 'border-4 rounded-2xl hover:scale-110 font-cabin p-1 w-fit whitespace-nowrap',
+  active: 'bg-primary text-black border-primary',
+  notActive: 'bg-black text-white border-black',
+}
 
-export function Category({ categories, activeCategory }:CategoryProps) {
-    return (
-           <div className='flex gap-1'>
-                        <Link to="." search={(prev) => ({...prev, category:undefined})}
-                        className={`${
-            activeCategory ? "bg-primary text-black p-2  border-black border-4 rounded-2xl hover:scale-110  font-cabin" : null
-          } `}>{activeCategory && 'All Posts'}
-                        
-                        </Link>
-                        {categories.map(cat => 
-                        <Link key={cat.slug} to="." search={(prev) => ({...prev, category: cat.slug, page: 1 }) }
-                        className='bg-black text-white 
-                        border-primary 
-                        border-7 rounded-2xl 
-                        hover:scale-110 
-                        p-2 font-cabin'>{cat.name}</Link>)}
-        </div>
-    )
+export function Category({ categories, activeCategory }: CategoryProps) {
+  return (
+    <div className='flex gap-5'>
+      <Link
+        to="."
+        search={(prev) => ({ ...prev, category: undefined, page: 1 })}
+        className={`${buttonStyles.shared} ${!activeCategory ? buttonStyles.active : buttonStyles.notActive}`}
+      >
+        All Posts
+      </Link>
+
+      {categories.map((cat) => (
+        <Link
+          key={cat.slug}
+          to="."
+          search={(prev) => ({ ...prev, category: cat.slug, page: 1 })}
+          className={`${buttonStyles.shared} ${activeCategory === cat.slug ? buttonStyles.active : buttonStyles.notActive}`}
+        >
+          {cat.name}
+        </Link>
+      ))}
+    </div>
+  )
 }
