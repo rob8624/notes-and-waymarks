@@ -87,6 +87,7 @@ export interface IHomePageBook extends IStrapiBaseEntity {
   author: string
   summary: string
   image: IStrapiMedia
+  
 }
 
 export interface ISiteSettingsData extends IStrapiBaseEntity {

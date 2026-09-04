@@ -7,14 +7,14 @@ interface CategoryProps {
 }
 
 const buttonStyles = {
-  shared: 'border-4 rounded-2xl hover:scale-110 font-cabin p-1 w-fit whitespace-nowrap',
+  shared: 'border-2 rounded-2xl hover:scale-110 font-cabin p-2 w-fit whitespace-nowrap',
   active: 'bg-primary text-black border-primary',
-  notActive: 'bg-black text-white border-black',
+  notActive: 'bg-white text-black border-black opacity-25',
 }
 
 export function Category({ categories, activeCategory }: CategoryProps) {
   return (
-    <div className='flex gap-5'>
+    <div className='flex lg:gap-5 gap-1 flex-wrap'>
       <Link
         to="."
         search={(prev) => ({ ...prev, category: undefined, page: 1 })}

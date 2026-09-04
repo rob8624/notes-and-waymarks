@@ -40,16 +40,24 @@ function RouteComponent() {
 
  
   return (
-  <div className="flex flex-col gap-2 mt-10 md:grid md:grid-cols-[20%_1fr]">
-
-    <h1 className="flex items justify-center order-1 text-4xl font-cabin md:col-start-2">
-      {postData.title}
-    </h1>
+  <div className="flex flex-col gap-2 mt-10 lg:grid lg:grid-cols-[20%_1fr]">
+   <div className='block lg:hidden text-xs uppercase text-primary bg-black w-fit p-1'>{postData.categories.map((item) => item.name)}</div>
+    <div className='flex flex-col items-center justify-center order-1'>
+      
+      <h1 className="flex items justify-center  text-4xl lg:text-5xl font-cabin md:col-start-2 tracking-tight mb-5">
+        {postData.title}
+        
+      </h1>
+      <div className='tracking-tight font-albert text-lg'>{postData.summary}</div>
+    </div>
 
     <PostSideBar
       author={postData.author}
-      publishedDate={postData.publishedAt}
-      className="order-2 border-t-2 border-r-0 md:order-1 md:row-span-2 md:col-start-1 md:row-start-1 md:border-r-2 md:border-t-0"
+      publishedDate={postData.createdAt}
+      updatedDate={postData.updatedAt}
+      categories={postData.categories}
+      className="order-2 border-r-0 
+      md:order-1 md:row-span-2 md:col-start-1 md:row-start-1 lg:border-r-2 md:border-t-0 lg:p-4 "
     />
 
     <div className="order-3 md:col-start-2">

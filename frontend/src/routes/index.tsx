@@ -67,10 +67,18 @@ function Home() {
   
   return (
     
-      <main className='grid grid-cols-1 grid-rows-[auto_1fr] md:grid-cols-[3fr_1fr] md:grid-rows-1 pt-10 '>
+      <main className='grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[3fr_1fr] lg:grid-rows-1 pt-10 '>
         
         {/* artlices */}
-        <section className='order-2 md:order-1  flex flex-col md:flex-row gap-2 mr-5 sm:border-r-2'>
+        <section className='order-1 md:order-1  flex flex-col lg:flex-row gap-2 mr-5 sm:border-r-2'>
+          <div className='flex lg:hidden justify-center items-center text-center sm:flex-none'>
+            <HomePageMessage data={siteSettings.homePageMessage}/>
+          </div>
+           <div className='flex lg:hidden flex-col gap-1 pb-2'>
+              
+              <Category categories={categories} activeCategory={search.category} />
+              
+            </div>
           <div className='sm:flex-1 border-b-2 sm:border-b-0 sm:border-r-2 pr-2'>
             <h1 className='sm:mt-4 text-2xl font-albert font-bold bg-primary p-2 w-fit '>Articles</h1>
             <p className='font-cabin text-gray-500 italic'>{siteSettings.articleMessage}</p>
@@ -82,6 +90,7 @@ function Home() {
               {posts.map((post: IPostData) => <PostCard key={posts.documentId} {...post}/>)}
               
             </div>
+            <hr className='block lg:hidden mb-10'/>
             
           </div>
           
@@ -89,16 +98,17 @@ function Home() {
         
         
         
+        
         {/* sidebar */}
         <section className='order-1 lg:order-2 flex flex-col gap-2 mb-10 lg:mb-0 sm:h-[90%]'>
-          <div className='flex justify-center items-center text-center sm:flex-none'>
+          <div className='hidden lg:flex justify-center items-center text-center sm:flex-none'>
             <HomePageMessage data={siteSettings.homePageMessage}/>
           </div>
           <div className=' flex-1 order-2 md:order-1'>
 
             
             
-            <div className='flex flex-col gap-1'>
+            <div className=' hidden lg:flex flex-col gap-1'>
               <div className='font-cabin text-2xl italic'>Article filter</div>
               <Category categories={categories} activeCategory={search.category} />
               

@@ -1,4 +1,5 @@
 import { Route as RootRoute } from '@/routes/__root'
+import { Link } from '@tanstack/react-router'
 
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
@@ -9,8 +10,10 @@ export default function Header() {
     return(
     <header>
         <div className='flex flex-col items-center sm:flex-row sm:justify-between  '>
+            <Link to='/' >
             <img className="sm:self-end mt-5" src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
+            </Link>
              <nav className='sm:self-end'>
                 <ul className='flex gap-2'>
                     {header.menu.map(item => 
@@ -21,7 +24,7 @@ export default function Header() {
         </div>
         <div className='h-5 bg-primary rounded-2xl'></div>
         <div className='flex justify-center sm:block'>
-            <div className='font-cabin text-3xl sm:text-2xl text-gray-600'>{header.heading}</div>
+            <div className='font-cabin text-lg sm:text-2xl text-gray-600'>{header.heading}</div>
         </div>
         
     </header>

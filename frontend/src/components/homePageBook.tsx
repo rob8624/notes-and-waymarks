@@ -10,7 +10,7 @@ export function HomePageBook( { data }  : HopePageBookProps ) {
         
         <>
            <h2>
-                <span className='font-cabin text-4xl italic'>Book</span> 
+                <span className='font-cabin text-3xl bg-primary p-1'>Book</span> 
                 <span className='font-albert text-2xl text-gray-500'> of the moment.....</span>
               </h2>
             <div className="flex flex-row gap-5 pt-4">

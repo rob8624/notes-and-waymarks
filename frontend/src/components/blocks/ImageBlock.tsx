@@ -32,7 +32,7 @@ interface ImageCaptionProps {
 
     const classes = [
     sizeClasses[imageSize],
-    'md:order-2',
+    
     'md:max-w-[70%]',
     imageBorder && 'border-4 border-black',
     roundedBorder && 'rounded-2xl',
@@ -51,7 +51,7 @@ interface ImageCaptionProps {
     return (
       <>
       
-        <figcaption className={`${ maxWidth ? 'max-w-50 min-w-20' : null } md:order-1  font-cabin text-gray-500 tracking-tigh text-sm self-center`}>
+        <figcaption className={`${ maxWidth ? 'max-w-50 min-w-20' : null }  font-cabin text-gray-500 tracking-tigh text-sm self-center`}>
           <FontAwesomeIcon icon={faCamera} />{imageCaption?.caption}
         
         </figcaption>
@@ -89,37 +89,43 @@ interface ImageCaptionProps {
 
 
 
-    switch(captionPosition) {
-        case "bottom":
-           return ( 
-           <figure className="flex flex-col items-center p-5">
-            <SingleImage singleImage={singleImage}/> 
-            <ImageCaption imageCaption={caption} />
-          </figure>)
-        case "top": 
-        return (
-           <figure className="flex flex-col items-center p-5">
-            
-            <SingleImage singleImage={singleImage}/> 
-            <ImageCaption imageCaption={caption} />
-          </figure>)
-           case "left": 
-        return (
-           <figure className="flex justify-center items-center p-5 flex-col md:flex-row gap-1">
-              <SingleImage singleImage={singleImage}/> 
-              <ImageCaption imageCaption={caption} maxWidth={true} />
-            </figure>
-            )
-        
-        default:
-      return (
-     <figure className="flex flex-col items-center p-5">
-          <SingleImage singleImage={singleImage}/> 
-          <ImageCaption imageCaption={caption}/>
-        </figure>
-        
+    switch (captionPosition) {
+  case 'bottom':
+    return (
+      <figure className="flex flex-col items-center p-5">
+        <SingleImage singleImage={singleImage} />
+        <ImageCaption imageCaption={caption} />
+      </figure>
     )
 
+  case 'top':
+    return (
+      <figure className="flex flex-col items-center p-5">
+        <ImageCaption imageCaption={caption} />
+        <SingleImage singleImage={singleImage} />
+      </figure>
+    )
+
+  case 'left':
+  return (
+    <figure className="flex flex-col md:flex-row justify-center items-center p-5 gap-1">
+      <div className="order-2 md:order-1">
+        <ImageCaption imageCaption={caption} maxWidth />
+      </div>
+
+      <div className="order-1 md:order-2">
+        <SingleImage singleImage={singleImage} />
+      </div>
+    </figure>
+  )
+
+  default:
+    return (
+      <figure className="flex flex-col items-center p-5">
+        <SingleImage singleImage={singleImage} />
+        <ImageCaption imageCaption={caption} />
+      </figure>
+    )
 }
 
 
