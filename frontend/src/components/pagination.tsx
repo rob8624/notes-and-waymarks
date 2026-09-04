@@ -24,12 +24,12 @@ export function Pagination({ page, totalPages }:PaginationProps) {
             
             <div className='font-albert text-lg'>
 
-            {page < totalPages && (
+             {page > 1 && (
                 <Link
                     to="."
-                    search={(prev) => ({ ...prev, page: page + 1 })}
+                    search={(prev) => ({ ...prev, page: page - 1 })}
                 >
-                    Next page
+                    Prev page
                 </Link>
             )}
 
@@ -37,12 +37,12 @@ export function Pagination({ page, totalPages }:PaginationProps) {
 
             <div className='font-albert text-lg'>
 
-            {page > 1 && (
+           {page < totalPages && (
                 <Link
                     to="."
-                    search={(prev) => ({ ...prev, page: page - 1 })}
+                    search={(prev) => ({ ...prev, page: page + 1 })}
                 >
-                    Prev page
+                    Next page
                 </Link>
             )}
             
@@ -52,3 +52,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
         </div>
     )
 }
+
+
+
+ 

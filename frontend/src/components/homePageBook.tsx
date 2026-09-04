@@ -6,6 +6,11 @@ type HopePageBookProps = {
 
 
 export function HomePageBook( { data }  : HopePageBookProps ) {
+    
+    if (!data.visible ) {
+        return null
+    }
+    
     return (
         
         <>

@@ -31,6 +31,19 @@ export interface FeatureCurrentRead extends Struct.ComponentSchema {
     bookName: Schema.Attribute.String;
     image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     summary: Schema.Attribute.Text;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface FeatureMomentImage extends Struct.ComponentSchema {
+  collectionName: 'components_feature_moment_images';
+  info: {
+    displayName: 'momentImage';
+  };
+  attributes: {
+    caption: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    visible: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
   };
 }
 
@@ -90,6 +103,7 @@ declare module '@strapi/strapi' {
       'blocks.image': BlocksImage;
       'blocks.richtext': BlocksRichtext;
       'feature.current-read': FeatureCurrentRead;
+      'feature.moment-image': FeatureMomentImage;
       'images.image': ImagesImage;
       'images.image-caption': ImagesImageCaption;
       'images.image-settings': ImagesImageSettings;

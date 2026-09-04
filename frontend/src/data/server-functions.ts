@@ -36,7 +36,11 @@ export const getFooterData = createServerFn({method: 'GET'}).handler(async ():Pr
 const getSettings = async () => {
   return sdk.single('site-setting').find({
     populate: {
-      momentImage: true,
+      momentImage: {
+        populate: {
+          image:true
+        }
+      },
       homePageBook: {
         populate: {
           image: true,

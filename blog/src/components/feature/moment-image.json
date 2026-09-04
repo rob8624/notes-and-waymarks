@@ -1,16 +1,10 @@
 {
-  "collectionName": "components_feature_current_reads",
+  "collectionName": "components_feature_moment_images",
   "info": {
-    "displayName": "Current Read"
+    "displayName": "momentImage"
   },
   "options": {},
   "attributes": {
-    "bookName": {
-      "type": "string"
-    },
-    "summary": {
-      "type": "text"
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -21,12 +15,12 @@
         "audios"
       ]
     },
-    "author": {
-      "type": "string"
-    },
     "visible": {
       "type": "boolean",
       "default": true
+    },
+    "caption": {
+      "type": "string"
     }
   },
   "config": {}

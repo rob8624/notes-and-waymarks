@@ -14,16 +14,6 @@
     "articleMessage": {
       "type": "string"
     },
-    "momentImage": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "homePageBook": {
       "type": "component",
       "component": "feature.current-read",
@@ -31,6 +21,11 @@
     },
     "homePageMessage": {
       "type": "blocks"
+    },
+    "momentImage": {
+      "type": "component",
+      "component": "feature.moment-image",
+      "repeatable": false
     }
   }
 }

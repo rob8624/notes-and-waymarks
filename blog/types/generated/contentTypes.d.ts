@@ -619,9 +619,7 @@ export interface ApiSiteSettingSiteSetting extends Struct.SingleTypeSchema {
       'api::site-setting.site-setting'
     > &
       Schema.Attribute.Private;
-    momentImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
+    momentImage: Schema.Attribute.Component<'feature.moment-image', false>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

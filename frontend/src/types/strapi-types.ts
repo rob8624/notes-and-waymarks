@@ -87,12 +87,20 @@ export interface IHomePageBook extends IStrapiBaseEntity {
   author: string
   summary: string
   image: IStrapiMedia
+  visible: boolean
   
+}
+
+export interface IImageOfTheMoment {
+  id: number
+  image: IStrapiMedia
+  visible: boolean
+  caption: string
 }
 
 export interface ISiteSettingsData extends IStrapiBaseEntity {
   articleMessage: string
-  momentImage: IStrapiMedia
+  momentImage: IImageOfTheMoment
   homePageBook: IHomePageBook
   homePageMessage : BlocksContent
   

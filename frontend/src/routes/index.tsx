@@ -120,7 +120,7 @@ function Home() {
               <HomePageBook  data={siteSettings.homePageBook} /> 
             </div>
             <div className='flex flex-col flex-3 sm:flex-1'>
-              <ImageOfTheMoment siteSettings={siteSettings}/>
+              <ImageOfTheMoment imageOfTheMoment={siteSettings.momentImage}/>
             </div>
           
           </div>
