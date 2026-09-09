@@ -124,6 +124,19 @@ const getDetail = async ({ slug }: { slug: string }) => {
             },
             },
           },
+          'blocks.divider': {
+            fields: ['*'],
+          },
+          'blocks.youtube': {
+            fields: ['*'],
+          },
+       'blocks.multiple-images': {
+  populate: {
+    images: {
+      fields: ['url', 'formats', 'alternativeText'],
+    },
+  },
+},
         },
       },
     },

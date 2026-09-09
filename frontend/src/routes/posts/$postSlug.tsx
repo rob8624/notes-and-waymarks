@@ -60,9 +60,9 @@ function RouteComponent() {
       md:order-1 md:row-span-2 md:col-start-1 md:row-start-1 lg:border-r-2 md:border-t-0 lg:p-4 "
     />
 
-    <div className="order-3 md:col-start-2">
+    <article className="order-3 md:col-start-2 post-content">
       <BlockRenderer blocks={postData.content} />
-    </div>
+    </article>
 
   </div>
 )

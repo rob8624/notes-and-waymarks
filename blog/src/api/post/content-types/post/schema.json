@@ -47,7 +47,10 @@
       "type": "dynamiczone",
       "components": [
         "blocks.richtext",
-        "blocks.image"
+        "blocks.image",
+        "blocks.divider",
+        "blocks.youtube",
+        "blocks.multiple-images"
       ]
     }
   }

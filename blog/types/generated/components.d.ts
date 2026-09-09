@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksDivider extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_dividers';
+  info: {
+    displayName: 'Divider';
+  };
+  attributes: {
+    style: Schema.Attribute.Enumeration<
+      ['Dashed', 'Dotted', 'Solid', 'Rounded']
+    >;
+  };
+}
+
 export interface BlocksImage extends Struct.ComponentSchema {
   collectionName: 'components_blocks_images';
   info: {
@@ -7,6 +19,19 @@ export interface BlocksImage extends Struct.ComponentSchema {
   };
   attributes: {
     singleImage: Schema.Attribute.Component<'images.image', false>;
+  };
+}
+
+export interface BlocksMultipleImages extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_multiple_images';
+  info: {
+    displayName: 'multipleImages';
+  };
+  attributes: {
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
   };
 }
 
@@ -18,6 +43,16 @@ export interface BlocksRichtext extends Struct.ComponentSchema {
   attributes: {
     richtext: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<'plugin::strapi-tiptap-editor.strapi-tiptap-editor'>;
+  };
+}
+
+export interface BlocksYoutube extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_youtubes';
+  info: {
+    displayName: 'youtube';
+  };
+  attributes: {
+    url: Schema.Attribute.String;
   };
 }
 
@@ -100,8 +135,11 @@ export interface NavigationNavLink extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'blocks.divider': BlocksDivider;
       'blocks.image': BlocksImage;
+      'blocks.multiple-images': BlocksMultipleImages;
       'blocks.richtext': BlocksRichtext;
+      'blocks.youtube': BlocksYoutube;
       'feature.current-read': FeatureCurrentRead;
       'feature.moment-image': FeatureMomentImage;
       'images.image': ImagesImage;

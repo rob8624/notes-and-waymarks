@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_dividers",
+  "info": {
+    "displayName": "Divider"
+  },
+  "options": {},
+  "attributes": {
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "Dashed",
+        "Dotted",
+        "Solid",
+        "Rounded"
+      ]
+    }
+  },
+  "config": {}
+}

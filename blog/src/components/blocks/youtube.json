@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_blocks_youtubes",
+  "info": {
+    "displayName": "youtube"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

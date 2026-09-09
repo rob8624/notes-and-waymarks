@@ -576,7 +576,15 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       'manyToMany',
       'api::category.category'
     >;
-    content: Schema.Attribute.DynamicZone<['blocks.richtext', 'blocks.image']>;
+    content: Schema.Attribute.DynamicZone<
+      [
+        'blocks.richtext',
+        'blocks.image',
+        'blocks.divider',
+        'blocks.youtube',
+        'blocks.multiple-images',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

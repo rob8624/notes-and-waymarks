@@ -17,4 +17,22 @@ export interface ImageBlock extends IStrapiBaseEntity {
   }
 }
 
-export type DynamicZoneBlock = RichTextBlock | ImageBlock
+export interface DividerBlock {
+   __component: 'blocks.divider'
+  id: number
+  style: 'Dashed' | 'Dotted' | 'Solid' | 'Rounded'
+}
+
+export interface YoutubeBlockType {
+  __component: 'blocks.youtube'
+  id: number
+  url: string
+}
+
+export interface MultiImageBlockType {
+  __component: 'blocks.multiple-images'
+  id: number
+  images : Array<IStrapiMedia>
+}
+
+export type DynamicZoneBlock = RichTextBlock | ImageBlock | DividerBlock | YoutubeBlockType | MultiImageBlockType
