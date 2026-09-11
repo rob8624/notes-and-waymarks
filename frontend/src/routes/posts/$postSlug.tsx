@@ -3,6 +3,10 @@ import { getPostDetail } from '#/data/server-functions'
 import { BlockRenderer } from '#/components/blockRenderer'
 import {  z } from 'zod'
 import { PostSideBar } from '#/components/postSideBar'
+import { LightBoxProvider } from '#/context/lightboxContext'
+import type { IStrapiMedia } from '#/types/strapi-types'
+import { Lightbox } from '#/components/lightBox'
+
 
 const slugSchema = z
   .string()
@@ -22,6 +26,8 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
     const slug = params.postSlug
     const post = await getPostDetail({ data: { slug: slug } })
 
+    
+
     return { post }
   },
 
@@ -33,8 +39,40 @@ function RouteComponent() {
  const { post } = Route.useLoaderData()
  const postData = post.data[0]
   
+ if (!postData) {
+    return <div>Post not found</div>
+  }
 
-  if (!postData) {
+
+ 
+const getGalleryImages = (): Array<IStrapiMedia> => {
+  const images: Array<IStrapiMedia> = []
+  const seenIds = new Set<number>()
+
+  const addImage = (image: IStrapiMedia) => {
+    if (!seenIds.has(image.id)) {
+      seenIds.add(image.id)
+      images.push(image)
+    }
+  }
+
+  for (const block of postData.content) {
+    if (block.__component === 'blocks.image') {
+      addImage(block.singleImage.image)
+    }
+
+    if (block.__component === 'blocks.multiple-images') {
+      block.images.forEach(addImage)
+    }
+  }
+
+  return images
+}
+
+  const galleryImages = getGalleryImages()
+ 
+ 
+ if (!postData) {
     return <div>Post not found</div>
   }
 
@@ -61,7 +99,10 @@ function RouteComponent() {
     />
 
     <article className="order-3 md:col-start-2 post-content">
-      <BlockRenderer blocks={postData.content} />
+      <LightBoxProvider images={galleryImages}>
+        <BlockRenderer blocks={postData.content} />
+        <Lightbox />
+      </LightBoxProvider>
     </article>
 
   </div>

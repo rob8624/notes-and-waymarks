@@ -6,6 +6,7 @@ import { MulltiImageBlock } from "./blocks/multiImage"
 
 import type { DynamicZoneBlock } from "#/types/block-types"
 
+import { useLightBox } from "#/context/lightboxContext"
 
 
 
@@ -16,7 +17,11 @@ interface BlockRendererProps {
 
 
 export function BlockRenderer({blocks}: BlockRendererProps) {
-  console.log('BLOCK:', JSON.stringify(blocks, null, 2))
+
+
+    const { images } = useLightBox()
+    console.log('images from context:', images)
+  
     const renderBlock = (block: DynamicZoneBlock) => {
         switch(block.__component) {
             case 'blocks.richtext':

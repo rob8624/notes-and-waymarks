@@ -25,7 +25,7 @@ export function PostSideBar({author, className, publishedDate, categories, updat
             day: "numeric" ,
             timeZone: 'Europe/London',
         }
-        return new Date(dateString).toLocaleDateString(undefined, options)
+        return new Date(dateString).toLocaleDateString('en-GB', options)
         }
 
     const localDate = formatDate(publishedDate)
