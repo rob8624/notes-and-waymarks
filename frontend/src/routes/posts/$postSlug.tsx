@@ -49,20 +49,20 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
   const images: Array<IStrapiMedia> = []
   const seenIds = new Set<number>()
 
-  const addImage = (image: IStrapiMedia) => {
+  const addImage = (image: IStrapiMedia, customCaption?: string | null ) => {
     if (!seenIds.has(image.id)) {
       seenIds.add(image.id)
-      images.push(image)
+      images.push({...image, caption: customCaption ?? null })
     }
   }
 
   for (const block of postData.content) {
     if (block.__component === 'blocks.image') {
-      addImage(block.singleImage.image)
+      addImage(block.singleImage.image, block.singleImage.imageCaption?.caption)
     }
 
     if (block.__component === 'blocks.multiple-images') {
-      block.images.forEach(addImage)
+      block.images.forEach((img) => addImage(img))
     }
   }
 
@@ -109,3 +109,4 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
 )
 
 }
+9

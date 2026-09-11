@@ -23,14 +23,15 @@ export function Lightbox() {
       >
         ‹
       </button>
-
-      <img
-        src={activeImage.formats?.large?.url ?? activeImage.url}
-        alt={activeImage.alternativeText ?? ''}
-        onClick={(e) => e.stopPropagation()}
-        className="max-h-[90vh] max-w-[90vw]"
-      />
-      <div>{activeImage.caption}</div>
+      <div>
+        <img
+            src={activeImage.formats?.large?.url ?? activeImage.url}
+            alt={activeImage.alternativeText ?? ''}
+            onClick={(e) => e.stopPropagation()}
+            className="max-h-[90vh] max-w-[90vw]"
+        />
+        {activeImage.caption && <div className="bg-white p-2 sm:p-4 text-gray-600 text-xs sm:text-base">{activeImage.caption}</div>}
+      </div>
 
       <button
         onClick={(e) => { e.stopPropagation(); showNext() }}
