@@ -8,8 +8,8 @@ interface CategoryProps {
 
 const buttonStyles = {
   shared: 'border-2 rounded-2xl hover:scale-110 font-cabin p-2 w-fit whitespace-nowrap',
-  active: 'bg-primary text-black border-primary',
-  notActive: 'bg-white text-black border-black opacity-25',
+  active: 'bg-primary text-black border-primary text-on-primary',
+  notActive: 'bg-white border-black opacity-25 text-black',
 }
 
 export function Category({ categories, activeCategory }: CategoryProps) {

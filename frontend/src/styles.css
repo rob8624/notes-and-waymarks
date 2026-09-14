@@ -6,6 +6,8 @@
   --font-cabin: "Cabin", sans-serif;
   --font-albert: "Albert Sans", sans-serif;
   --color-primary: #E0FAFF;
+  --color-on-primary: #000000;
+  
 }
 
 @plugin "@tailwindcss/typography";
@@ -27,7 +29,9 @@ body {
   
 }
 
-
+.logo {
+   transition: background-color 300ms ease, border-color 300ms ease;
+}
 
 /* Dashed border */
 hr.dashed {
@@ -48,4 +52,19 @@ hr.solid {
 hr.rounded {
   border-top: 8px solid #bbb;
   border-radius: 5px;
+}
+
+[data-theme="blue"] {
+   --color-primary: #E0FAFF;
+   --color-on-primary: #000000;
+}
+
+[data-theme="black"]  {
+   --color-primary: #030303;
+   --color-on-primary: #FFFFFF;
+}
+
+[data-theme="orange"]  {
+   --color-primary: #f19257;
+   --color-on-primary: #000000;
 }

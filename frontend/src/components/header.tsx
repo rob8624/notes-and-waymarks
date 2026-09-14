@@ -1,41 +1,38 @@
 import { Route as RootRoute } from '@/routes/__root'
 import { Link } from '@tanstack/react-router'
 import { useTheme } from '#/context/themeContext'
+import type { Theme } from '#/context/themeContext'
 
 
-interface ThemePickerType {
-    blue : string
-    orange : string
-    black : string
-
-}
 
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
   
     const { theme, selectTheme } = useTheme()
 
-   const themeColors = {
-    blue: '#E0FAFF',
-    orange: '#e89527',
-    black: '#050505',
-}
-    
+    const themes: Theme[] = ['blue', 'orange', 'black']
 
-     const ThemePicker = () => {
-    return (
-        <div className="flex gap-4">
-            {Object.entries(themeColors).map(([name, color]) => (
-                <button
-                    key={name}
-                    type="button"
-                    onClick={() => selectTheme(name as theme)}
-                    className="h-5 w-5 rounded-full"
-                    style={{ backgroundColor: color }}
-                />
-            ))}
-        </div>
-    )
+  const swatchColors: Record<Theme, string> = {
+  blue: '#E0FAFF',
+  orange: '#FF8C42',
+  black: '#030303',
+}
+
+const ThemePicker = () => {
+  return (
+    <div className="flex gap-4 pt-2">
+      {themes.map((name) => (
+        <button
+          key={name}
+          type="button"
+          onClick={() => selectTheme(name)}
+          style={{ backgroundColor: swatchColors[name] }}
+          className={`h-5 w-5 rounded-full ${theme === name ? 'ring-2 ring-black ring-offset-2' : ''}`}
+          aria-label={`Switch to ${name} theme`}
+        />
+      ))}
+    </div>
+  )
 }
 
 
@@ -44,7 +41,7 @@ export default function Header() {
     <header>
         <div className='flex flex-col items-center sm:flex-row sm:justify-between  '>
             <Link to='/' >
-            <img className="sm:self-end mt-5" src={header.logo.formats?.thumbnail?.url}
+            <img className="logo sm:self-end mt-5" src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
             </Link>
              <nav className='sm:self-end'>

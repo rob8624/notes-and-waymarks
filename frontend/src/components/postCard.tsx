@@ -18,7 +18,7 @@ export function PostCard({title, slug, categories, summary, featuredImage}: IPos
                     <div>{categories.map(item => item.name)}</div>
                     
                 </div> 
-            <div className="flex-1 flex justify-end items-end p-4">
+            <div className="flex-1 flex justify-end items-end p-4 text-on-primary">
                     <Link to="/posts/$postSlug" params={{ postSlug: slug }}>Read</Link>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export function ImageOfTheMoment({imageOfTheMoment}: imageOfTheMomentProps)  {
      return (
         <>
             <h2>
-                <span className='font-cabin text-3xl bg-primary p-1'>Image</span> 
+                <span className='font-cabin text-3xl bg-primary p-1 text-on-primary'>Image</span> 
                 <span className='font-albert text-2xl text-gray-500'> of the moment.....</span>
               </h2>
                <p className='m-0 font-albert text-sm pb-4'>{caption}</p>

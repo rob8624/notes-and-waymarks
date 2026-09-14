@@ -35,7 +35,7 @@ export function PostSideBar({author, className, publishedDate, categories, updat
     
     return (
         <div className={className}>
-            <div className="hidden lg:block text-lg uppercase text-primary bg-black w-fit p-1">{categories.map((item) => item.name)}</div>
+            <div className="hidden lg:block text-lg uppercase text-on-primary bg-black w-fit p-1">{categories.map((item) => item.name)}</div>
             <div className="flex justify-start">
                 <div className=" lg:mt-50 md:border-t-2 border-b-2 border-t-2 border-gray-400 
                 flex flex-row lg:flex-col gap-5 w-full items-center lg:items-start  ">
@@ -72,7 +72,7 @@ export function PostSideBar({author, className, publishedDate, categories, updat
                 
             </div>
             <div className="mt-2">
-                <button className="p-1 bg-primary text-black border-2">Share</button>
+                <button className="p-1 bg-primary border-2 text-on-primary">Share</button>
             </div>
             
         </div>

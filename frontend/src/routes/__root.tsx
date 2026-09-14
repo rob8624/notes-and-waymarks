@@ -1,4 +1,5 @@
 import { HeadContent, Scripts, createRootRoute, Link, stripSearchParams } from '@tanstack/react-router'
+
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { ISiteSettingsResponse } from '#/types/strapi-types'
@@ -12,6 +13,7 @@ import Footer from '#/components/footer'
 
 //Api calls
 import { getHeaderData, getFooterData, getSiteSettings } from '#/data/server-functions'
+
 
 
 
@@ -81,7 +83,7 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="blue">
       <head>
         <HeadContent />
       </head>
