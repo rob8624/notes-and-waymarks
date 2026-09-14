@@ -1,9 +1,36 @@
 import { Route as RootRoute } from '@/routes/__root'
 import { Link } from '@tanstack/react-router'
 
+interface ThemePickerType {
+    blue : string
+    orange : string
+    black : string
+
+}
+
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
 
+    const theme:ThemePickerType = {
+        'blue': '#E0FAFF',
+        'orange' : '#e89527',
+        'black' : '#050505'
+    }
+    
+
+     const ThemePicker = () => {
+        return (
+            <div className="flex gap-4">
+                {Object.entries(theme).map(([name, color]) => (
+                    <div
+                        key={name}
+                        className="h-5 w-5 rounded-full"
+                        style={{ backgroundColor: color }}
+                    />
+                ))}
+            </div>
+        )
+    }
 
 
 
@@ -23,8 +50,9 @@ export default function Header() {
             </nav>
         </div>
         <div className='h-5 bg-primary rounded-2xl'></div>
-        <div className='flex justify-center sm:block'>
+        <div className='flex justify-center flex-col items-center sm:block'>
             <div className='font-cabin text-lg sm:text-2xl text-gray-600'>{header.heading}</div>
+            <ThemePicker />
         </div>
         
     </header>
