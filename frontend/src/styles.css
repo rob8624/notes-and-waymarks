@@ -68,3 +68,19 @@ hr.rounded {
    --color-primary: #f19257;
    --color-on-primary: #000000;
 }
+
+
+@keyframes custom-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1); /* accelerate down */
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1); /* decelerate up */
+  }
+}
+
+.animate-custom-bounce {
+  animation: custom-bounce 1s ease-in-out;
+}

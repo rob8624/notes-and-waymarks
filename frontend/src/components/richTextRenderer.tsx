@@ -31,7 +31,7 @@ export function RichTextRenderer({ data }: { data: BlocksContent }) {
         bold: ({ children }) => <strong className="font-cabin">{children}</strong>,
         italic: ({ children }) => <span className="italic">{children}</span>,
         code: ({ children }) => (
-          <code className="bg-primary text-on-primary px-1.5 py-0.5 rounded text-lg font-mono">
+          <code className=" text-on-primary bg-primary/70  px-1.5 py-0.5 rounded text-lg font-mono">
             {children}
           </code>
         ),
