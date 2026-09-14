@@ -1,5 +1,7 @@
 import { Route as RootRoute } from '@/routes/__root'
 import { Link } from '@tanstack/react-router'
+import { useTheme } from '#/context/themeContext'
+
 
 interface ThemePickerType {
     blue : string
@@ -10,27 +12,31 @@ interface ThemePickerType {
 
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
+  
+    const { theme, selectTheme } = useTheme()
 
-    const theme:ThemePickerType = {
-        'blue': '#E0FAFF',
-        'orange' : '#e89527',
-        'black' : '#050505'
-    }
+   const themeColors = {
+    blue: '#E0FAFF',
+    orange: '#e89527',
+    black: '#050505',
+}
     
 
      const ThemePicker = () => {
-        return (
-            <div className="flex gap-4">
-                {Object.entries(theme).map(([name, color]) => (
-                    <div
-                        key={name}
-                        className="h-5 w-5 rounded-full"
-                        style={{ backgroundColor: color }}
-                    />
-                ))}
-            </div>
-        )
-    }
+    return (
+        <div className="flex gap-4">
+            {Object.entries(themeColors).map(([name, color]) => (
+                <button
+                    key={name}
+                    type="button"
+                    onClick={() => selectTheme(name as theme)}
+                    className="h-5 w-5 rounded-full"
+                    style={{ backgroundColor: color }}
+                />
+            ))}
+        </div>
+    )
+}
 
 
 

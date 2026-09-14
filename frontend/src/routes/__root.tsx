@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute, Link, stripSearchParams } from '
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { ISiteSettingsResponse } from '#/types/strapi-types'
+import { ThemeProvider } from '#/context/themeContext'
 
 import appCss from '../styles.css?url'
 
@@ -85,11 +86,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] p-1">
-          <Header />
-          {children}
-          <Footer />
-        </div>
+        <ThemeProvider>
+          <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] p-1">
+            <Header />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
         <TanStackDevtools
           config={{
             position: 'bottom-right',
