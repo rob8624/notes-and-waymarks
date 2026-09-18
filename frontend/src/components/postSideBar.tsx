@@ -35,10 +35,10 @@ export function PostSideBar({author, className, publishedDate, categories, updat
     
     return (
         <div className={className}>
-            <div className="hidden lg:block text-lg uppercase text-on-primary bg-primary w-fit p-1">
-                <div className="flex gap-4">
+            <div className="hidden lg:block text-lg  uppercase  w-fit p-1">
+                <div className="flex gap-4 flex-wrap">
                     {categories.map((item) => 
-                    <div className="border-2 border-black" key={item.id}>{item.name}</div>)}
+                    <div className="  text-on-primary bg-primary  p-1 text-sm" key={item.id}>{item.name}</div>)}
                 </div>
                 </div>
             <div className="flex justify-start">
