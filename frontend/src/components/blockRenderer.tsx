@@ -7,7 +7,6 @@ import { CodeBlock } from "./blocks/codeBlock"
 
 import type { DynamicZoneBlock } from "#/types/block-types"
 
-import { useLightBox } from "#/context/lightboxContext"
 
 
 
@@ -20,7 +19,7 @@ interface BlockRendererProps {
 export function BlockRenderer({blocks}: BlockRendererProps) {
 
 
-    const { images } = useLightBox()
+    
    
   
     const renderBlock = (block: DynamicZoneBlock) => {

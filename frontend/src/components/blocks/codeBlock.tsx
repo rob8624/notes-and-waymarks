@@ -9,35 +9,43 @@ declare global {
   }
 }
 
-
 // Prism mutates the DOM when it highlights code. Because this component
 // is server-rendered by TanStack Start, loading/running Prism before React
 // hydrates would change the server HTML and cause a hydration mismatch.
 // I therefore load Prism inside useEffect so it only runs after hydration.
 
-
-
-
 export function CodeBlock({ content, language }: CodeBlockType) {
   const codeRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    // Load Prism after hydration
-    const script = document.createElement("script")
-    script.src = "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
+    const prismScript = document.createElement("script")
+    prismScript.src =
+      "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
 
-    script.onload = () => {
-      if (codeRef.current) {
+    prismScript.onload = () => {
+      if (language === "python") {
+        const pythonScript = document.createElement("script")
+        pythonScript.src =
+          "https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"
+
+        pythonScript.onload = () => {
+          if (codeRef.current) {
+            window.Prism?.highlightElement(codeRef.current)
+          }
+        }
+
+        document.body.appendChild(pythonScript)
+      } else if (codeRef.current) {
         window.Prism?.highlightElement(codeRef.current)
       }
     }
 
-    document.body.appendChild(script)
+    document.body.appendChild(prismScript)
 
     return () => {
-      script.remove()
+      prismScript.remove()
     }
-  }, [])
+  }, [language])
 
   return (
     <pre>
