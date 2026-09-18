@@ -78,35 +78,47 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
 
  
   return (
-  <div className="flex flex-col gap-2 mt-10 lg:grid lg:grid-cols-[20%_1fr]">
-   <div className='block lg:hidden text-xs uppercase text-primary bg-black w-fit p-1'>{postData.categories.map((item) => item.name)}</div>
-    <div className='flex flex-col items-center justify-end order-1'>
-      
-      <h1 className="flex items justify-center  text-4xl lg:text-5xl font-cabin md:col-start-2 tracking-tight mb-5">
-        {postData.title}
-        
-      </h1>
-      <div className='tracking-tight font-albert text-lg'>{postData.summary}</div>
+  <div className="mt-10 flex flex-col gap-2 lg:grid lg:grid-cols-[20%_1fr] lg:grid-rows-[auto_1fr]">
+    {/* Mobile category */}
+    <div className="order-1 block w-fit bg-black p-1 text-xs uppercase text-primary lg:hidden">
+      {postData.categories.map((item) => item.name)}
     </div>
 
+    {/* Title */}
+    <div className="order-2 flex flex-col items-center lg:col-start-2 lg:row-start-1">
+      <h1 className="text-center font-cabin text-4xl tracking-tight lg:text-5xl">
+        {postData.title}
+      </h1>
+
+      <div className="mt-3 text-center font-albert text-lg tracking-tight mb-10">
+        {postData.summary}
+      </div>
+    </div>
+
+    {/* Sidebar */}
     <PostSideBar
       author={postData.author}
       publishedDate={postData.createdAt}
       updatedDate={postData.updatedAt}
       categories={postData.categories}
-      className="order-2 border-r-0 
-      md:order-1 md:row-span-2 md:col-start-1 md:row-start-1 lg:border-r-2 md:border-t-0 lg:p-4 "
+      className="
+        order-3
+        lg:col-start-1
+        lg:row-span-2
+        lg:row-start-1
+        lg:border-r-2
+        lg:p-4
+      "
     />
 
-    <article className="order-3 md:col-start-2 post-content">
+    {/* Article */}
+    <article className="order-4 post-content lg:col-start-2 lg:row-start-2">
       <LightBoxProvider images={galleryImages}>
         <BlockRenderer blocks={postData.content} />
         <Lightbox />
       </LightBoxProvider>
     </article>
-
   </div>
 )
-
 }
 9
