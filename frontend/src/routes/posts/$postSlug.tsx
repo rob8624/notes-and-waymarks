@@ -80,7 +80,7 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
   return (
   <div className="flex flex-col gap-2 mt-10 lg:grid lg:grid-cols-[20%_1fr]">
    <div className='block lg:hidden text-xs uppercase text-primary bg-black w-fit p-1'>{postData.categories.map((item) => item.name)}</div>
-    <div className='flex flex-col items-center justify-center order-1'>
+    <div className='flex flex-col items-center justify-end order-1'>
       
       <h1 className="flex items justify-center  text-4xl lg:text-5xl font-cabin md:col-start-2 tracking-tight mb-5">
         {postData.title}
