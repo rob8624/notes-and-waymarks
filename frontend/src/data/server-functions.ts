@@ -130,6 +130,9 @@ const getDetail = async ({ slug }: { slug: string }) => {
           'blocks.youtube': {
             fields: ['*'],
           },
+          'blocks.code': {
+            fields: ['*'],
+          },
        'blocks.multiple-images': {
   populate: {
     images: {

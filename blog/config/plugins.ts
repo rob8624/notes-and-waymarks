@@ -49,6 +49,53 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
       },
     },
   },
+   
+     'tiptap-editor': {
+    config: {
+      presets: {
+        // A minimal preset for short-form content like titles or captions
+        minimal: {
+          bold: true,
+          italic: true,
+          underline: true,
+        },
+
+        // A standard preset for blog posts and articles
+        standard: {
+          bold: true,
+          italic: true,
+          underline: true,
+          strike: true,
+          heading: true,
+          bulletList: true,
+          orderedList: true,
+          blockquote: true,
+          link: true,
+        },
+
+        // A full preset with every feature enabled
+        full: {
+          bold: true,
+          italic: true,
+          underline: true,
+          strike: true,
+          code: true,
+          codeBlock: true,
+          heading: true,
+          blockquote: true,
+          bulletList: true,
+          orderedList: true,
+          link: true,
+          table: true,
+          textAlign: true,
+          superscript: true,
+          subscript: true,
+          mediaLibrary: true,
+        },
+      },
+    },
+  },
+    
 });
 
 export default config;

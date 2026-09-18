@@ -1,5 +1,19 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksCode extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_codes';
+  info: {
+    displayName: 'code';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<'plugin::strapi-tiptap-editor.strapi-tiptap-editor'>;
+    language: Schema.Attribute.Enumeration<
+      ['python', 'javascript', 'html', 'css', 'typescript']
+    >;
+  };
+}
+
 export interface BlocksDivider extends Struct.ComponentSchema {
   collectionName: 'components_blocks_dividers';
   info: {
@@ -135,6 +149,7 @@ export interface NavigationNavLink extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'blocks.code': BlocksCode;
       'blocks.divider': BlocksDivider;
       'blocks.image': BlocksImage;
       'blocks.multiple-images': BlocksMultipleImages;

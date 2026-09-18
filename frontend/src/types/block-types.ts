@@ -35,4 +35,12 @@ export interface MultiImageBlockType {
   images : Array<IStrapiMedia>
 }
 
-export type DynamicZoneBlock = RichTextBlock | ImageBlock | DividerBlock | YoutubeBlockType | MultiImageBlockType
+
+export interface CodeBlockType {
+  __component: 'blocks.code'
+  id: number
+  content: string
+  language: string
+}
+
+export type DynamicZoneBlock = RichTextBlock | ImageBlock | DividerBlock | YoutubeBlockType | MultiImageBlockType | CodeBlockType

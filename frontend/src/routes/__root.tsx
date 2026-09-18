@@ -65,7 +65,13 @@ export const Route = createRootRoute({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+      rel: 'stylesheet',
+      href: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css',
+    },
     ],
+  
+
   }),
   notFoundComponent: () => (
     <div className="flex flex-col items-center justify-center py-20 text-center">

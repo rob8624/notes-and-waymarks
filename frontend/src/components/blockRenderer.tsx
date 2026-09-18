@@ -3,6 +3,7 @@ import { SingleImageBlock } from "./blocks/ImageBlock"
 import { DividerBlock } from "./blocks/dividerBlock"
 import { YoutubeBlock } from "./blocks/youtubeBlock"
 import { MulltiImageBlock } from "./blocks/multiImage"
+import { CodeBlock } from "./blocks/codeBlock"
 
 import type { DynamicZoneBlock } from "#/types/block-types"
 
@@ -20,7 +21,7 @@ export function BlockRenderer({blocks}: BlockRendererProps) {
 
 
     const { images } = useLightBox()
-    console.log('images from context:', images)
+   
   
     const renderBlock = (block: DynamicZoneBlock) => {
         switch(block.__component) {
@@ -34,6 +35,8 @@ export function BlockRenderer({blocks}: BlockRendererProps) {
                 return <YoutubeBlock {...block} key={block.id} />
              case 'blocks.multiple-images':
                 return <MulltiImageBlock {...block} key={block.id} />
+            case 'blocks.code':
+                return <CodeBlock {...block} key={block.id} />
         }
     }
   

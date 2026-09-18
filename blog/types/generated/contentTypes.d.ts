@@ -583,6 +583,7 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
         'blocks.divider',
         'blocks.youtube',
         'blocks.multiple-images',
+        'blocks.code',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

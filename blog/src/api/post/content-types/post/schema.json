@@ -50,7 +50,8 @@
         "blocks.image",
         "blocks.divider",
         "blocks.youtube",
-        "blocks.multiple-images"
+        "blocks.multiple-images",
+        "blocks.code"
       ]
     }
   }

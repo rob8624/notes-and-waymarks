@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blocks_codes",
+  "info": {
+    "displayName": "code"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "customField",
+      "customField": "plugin::strapi-tiptap-editor.strapi-tiptap-editor"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "python",
+        "javascript",
+        "html",
+        "css",
+        "typescript"
+      ]
+    }
+  },
+  "config": {}
+}
