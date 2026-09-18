@@ -84,3 +84,72 @@ hr.rounded {
 .animate-custom-bounce {
   animation: custom-bounce 1s ease-in-out;
 }
+
+
+
+.terminal {
+  overflow: hidden;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  background: #09090b;
+  box-shadow:
+    0 10px 30px rgb(0 0 0 / 20%),
+    0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 14px;
+  background: #18181b;
+  border-bottom: 1px solid #27272a;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.dot.red {
+  background: #ff5f57;
+}
+
+.dot.yellow {
+  background: #febc2e;
+}
+
+.dot.green {
+  background: #28c840;
+}
+
+.terminal-language {
+  margin-left: auto;
+  color: #71717a;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.terminal pre {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  background: #09090b;
+}
+
+.terminal code {
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+  font-size: 14px;
+  line-height: 1.7;
+}

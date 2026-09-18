@@ -48,16 +48,30 @@ export function CodeBlock({ content, language }: CodeBlockType) {
   }, [language])
 
   return (
-    <pre>
-      <code
-        ref={codeRef}
-        className={`language-${language}`}
-        dangerouslySetInnerHTML={{
-          __html: content
-            .replace(/^<pre><code>/, "")
-            .replace(/<\/code><\/pre>$/, ""),
-        }}
-      />
-    </pre>
+    <div className="terminal">
+      <div className="terminal-header">
+        <div className="terminal-dots">
+          <span className="dot red" />
+          <span className="dot yellow" />
+          <span className="dot green" />
+        </div>
+
+        <span className="terminal-language">
+          {language}
+        </span>
+      </div>
+
+      <pre>
+        <code
+          ref={codeRef}
+          className={`language-${language}`}
+          dangerouslySetInnerHTML={{
+            __html: content
+              .replace(/^<pre><code>/, "")
+              .replace(/<\/code><\/pre>$/, ""),
+          }}
+        />
+      </pre>
+    </div>
   )
 }
