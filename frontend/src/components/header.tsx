@@ -53,7 +53,7 @@ const ThemePicker = () => {
 useEffect(() => {
   const onScroll = () => {
     const y = window.scrollY
-    setIsScrolling(prev => (prev ? y > 40 : y > 80))
+    setIsScrolling(prev => (prev ? y > 30 : y > 120))
   }
 
 
