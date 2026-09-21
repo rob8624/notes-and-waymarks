@@ -34,7 +34,7 @@ const handleBounce = () => {
 
 const ThemePicker = () => {
   return (
-    <div className="flex gap-4 pt-2">
+    <div className="flex gap-4 pt-2 bg-white pb-2 ">
       {themes.map((name) => (
         <button
          disabled={isBouncing}
@@ -42,7 +42,7 @@ const ThemePicker = () => {
           type="button"
           onClick={() => {selectTheme(name); handleBounce()}}
           style={{ backgroundColor: swatchColors[name] }}
-          className={`h-5 w-5 rounded-full ${theme === name ? 'ring-2 ring-black ring-offset-2' : ''}`}
+          className={`h-3 w-3 md:h-5 md:w-5 rounded-full ${theme === name ? 'ring-2 ring-black ring-offset-2' : ''}`}
           aria-label={`Switch to ${name} theme`}
         />
       ))}
@@ -52,9 +52,10 @@ const ThemePicker = () => {
 
 useEffect(() => {
   const onScroll = () => {
-  const y = window.scrollY
-  setIsScrolling(prev => (prev ? y > 60 : y > 100))
-}
+    const y = window.scrollY
+    setIsScrolling(prev => (prev ? y > 40 : y > 80))
+  }
+
 
   window.addEventListener('scroll', onScroll)
   return () => window.removeEventListener("scroll", onScroll);
@@ -65,8 +66,13 @@ useEffect(() => {
 
     return(
       <>
+      <div
+  className={`sticky top-0 z-10 bg-white pt-2 transition-[height] duration-300 ease-out ${
+    Isscrolling ? 'h-16' : 'h-32 md:h-26'
+  }`}
+>
       { Isscrolling ?
-      <header className="sticky top-0 z-10 pb-2  bg-white ">
+      <header>
         <div className='flex justify-between pl-2 pr-2 pb-1'>
         <Link to='/' >
             <img className={`logo sm:self-end ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
@@ -77,7 +83,7 @@ useEffect(() => {
           </div>
       <div className={`h-2 bg-primary  transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>      
     </header> :
-    <header id="header" className="sticky top-0 z-10 bg-white pb-2 ">
+    <header id="header" className=" bg-white/25 pb-2 ">
         <div id="header-content" className={`flex flex-col items-center sm:flex-row sm:justify-between h-fit`}>
             <Link to='/' >
             <img className={`logo sm:self-end mt-5 ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
@@ -92,13 +98,13 @@ useEffect(() => {
             </nav>
         </div>
         <div className={`h-5 bg-primary rounded-2xl transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>
-        <div className='flex justify-center flex-col items-center sm:block'>
+        <div className='flex justify-center flex-col items-center sm:block bg-white'>
             <div className='font-cabin text-lg sm:text-2xl text-gray-600'>{header.heading}</div>
             <ThemePicker />
         </div>
         
     </header> }
-    
+    </div>
     </>
 )
 }
