@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Route as RootRoute } from '@/routes/__root'
 import { Link } from '@tanstack/react-router'
 import { useTheme } from '#/context/themeContext'
@@ -7,11 +7,12 @@ import type { Theme } from '#/context/themeContext'
 
 
 type Bounce = boolean | undefined
+type Scroll = boolean | undefined
 
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
     const  [isBouncing, setIsBouncing] = useState<Bounce>(false)
-  
+   const [Isscrolling, setIsScrolling] = useState<Scroll>(false)
     const { theme, selectTheme } = useTheme()
 
     const themes: Theme[] = ['blue', 'orange', 'black']
@@ -49,11 +50,35 @@ const ThemePicker = () => {
   )
 }
 
+useEffect(() => {
+  const onScroll = () => {
+  const y = window.scrollY
+  setIsScrolling(prev => (prev ? y > 60 : y > 100))
+}
+
+  window.addEventListener('scroll', onScroll)
+  return () => window.removeEventListener("scroll", onScroll);
+
+}, [])
+
 
 
     return(
-    <header>
-        <div className='flex flex-col items-center sm:flex-row sm:justify-between  '>
+      <>
+      { Isscrolling ?
+      <header className="sticky top-0 z-10 pb-2  bg-white ">
+        <div className='flex justify-between pl-2 pr-2 pb-1'>
+        <Link to='/' >
+            <img className={`logo sm:self-end ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
+            alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
+            </Link>
+            
+            <ThemePicker />
+          </div>
+      <div className={`h-2 bg-primary  transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>      
+    </header> :
+    <header id="header" className="sticky top-0 z-10 bg-white pb-2 ">
+        <div id="header-content" className={`flex flex-col items-center sm:flex-row sm:justify-between h-fit`}>
             <Link to='/' >
             <img className={`logo sm:self-end mt-5 ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
@@ -72,6 +97,8 @@ const ThemePicker = () => {
             <ThemePicker />
         </div>
         
-    </header>
+    </header> }
+    
+    </>
 )
 }
