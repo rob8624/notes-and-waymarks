@@ -53,6 +53,11 @@
         "blocks.multiple-images",
         "blocks.code"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "settings.seo",
+      "repeatable": false
     }
   }
 }

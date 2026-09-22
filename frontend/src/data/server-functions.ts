@@ -46,6 +46,7 @@ const getSettings = async () => {
           image: true,
         },
       },
+      seo: { populate: { shareImage: true } },
     },
   }) as Promise<ISiteSettingsResponse>
 }
@@ -107,6 +108,7 @@ const getDetail = async ({ slug }: { slug: string }) => {
       featuredImage: { fields: ['url', 'formats', 'alternativeText'] },
       categories: { fields: ['name', 'slug'] },
       author: { fields: ['name', 'position'] },
+      seo: { populate: { shareImage: true } },
       content: {
         on: {
           'blocks.richtext': {

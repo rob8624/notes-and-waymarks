@@ -22,7 +22,7 @@ import { getHeaderData, getFooterData, getSiteSettings } from '#/data/server-fun
 
 
 export const Route = createRootRoute({
-  
+ staleTime: 1000 * 60 * 60, 
  loader: async () => {
   try {
     const [header, footer, siteSettingsRaw] = await Promise.all([
@@ -47,32 +47,32 @@ export const Route = createRootRoute({
   
   
   
-  head: () => ({
+   head: ({ loaderData }) => {
+  const seo = loaderData?.siteSettings?.seo
+  const siteName = loaderData?.siteSettings?.seo?.metaTitle ?? 'Notes and Waymarks'
+
+  return {
     meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: 'TanStack Start Starter',
-      },
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { title: seo?.metaTitle ?? siteName },
+      { name: 'description', content: seo?.metaDescription },
+      { property: 'og:title', content: seo?.metaTitle ?? siteName },
+      { property: 'og:description', content: seo?.metaDescription },
+      { property: 'og:image', content: seo?.shareImage?.url },
+      { property: 'og:type', content: 'website' },
+      { name: 'twitter:card', content: 'summary_large_image' },
     ],
     links: [
+      { rel: 'stylesheet', href: appCss },
       {
         rel: 'stylesheet',
-        href: appCss,
+        href: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css',
       },
-      {
-      rel: 'stylesheet',
-      href: 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css',
-    },
     ],
+  }
+},
   
-
-  }),
   notFoundComponent: () => (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       <h1 className="text-4xl font-bold font-albert">404</h1>

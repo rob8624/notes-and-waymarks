@@ -2,6 +2,7 @@
 
 import { type BlocksContent } from '@strapi/blocks-react-renderer';
 import type { DynamicZoneBlock } from './block-types';
+import type { seoType } from './seo-types';
 
 interface IStrapiFocalPoint {
   x: number
@@ -103,6 +104,7 @@ export interface ISiteSettingsData extends IStrapiBaseEntity {
   momentImage: IImageOfTheMoment
   homePageBook: IHomePageBook
   homePageMessage : BlocksContent
+  seo?: seoType
   
 }
 
@@ -119,6 +121,7 @@ export interface IPostData extends IStrapiBaseEntity {
   summary: string
   author: IAuthorData | null
   content: DynamicZoneBlock[]
+  seo: seoType
 }
 
 

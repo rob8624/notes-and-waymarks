@@ -146,6 +146,23 @@ export interface NavigationNavLink extends Struct.ComponentSchema {
   };
 }
 
+export interface SettingsSeo extends Struct.ComponentSchema {
+  collectionName: 'components_settings_seos';
+  info: {
+    displayName: 'SEO';
+  };
+  attributes: {
+    canonicalUrl: Schema.Attribute.String;
+    keywords: Schema.Attribute.String;
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.String;
+    noIndex: Schema.Attribute.Boolean;
+    shareImage: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+  };
+}
+
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
@@ -161,6 +178,7 @@ declare module '@strapi/strapi' {
       'images.image-caption': ImagesImageCaption;
       'images.image-settings': ImagesImageSettings;
       'navigation.nav-link': NavigationNavLink;
+      'settings.seo': SettingsSeo;
     }
   }
 }

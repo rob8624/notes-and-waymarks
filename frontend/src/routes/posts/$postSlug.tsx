@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useLoaderData } from '@tanstack/react-router'
 import { getPostDetail } from '#/data/server-functions'
 import { BlockRenderer } from '#/components/blockRenderer'
 import {  z } from 'zod'
@@ -29,6 +29,33 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
     
 
     return { post }
+  },
+  head: ({ loaderData }) => {
+    const postData = loaderData?.post?.data?.[0]
+    if (!postData) return {}
+
+    const seo = postData.seo
+    const title = seo?.metaTitle ?? postData.title
+    const description = seo?.metaDescription ?? postData.summary
+    const image = seo?.shareImage?.url ?? postData.featuredImage?.url
+
+    return {
+      meta: [
+        { title },
+        { name: 'description', content: description },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+        { property: 'og:image', content: image },
+        { property: 'og:type', content: 'article' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:title', content: title },
+        { name: 'twitter:description', content: description },
+        ...(seo?.noIndex ? [{ name: 'robots', content: 'noindex' }] : []),
+      ],
+      links: seo?.canonicalUrl
+        ? [{ rel: 'canonical', href: seo.canonicalUrl }]
+        : [],
+    }
   },
 
   component: RouteComponent,

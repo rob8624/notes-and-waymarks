@@ -26,6 +26,11 @@
       "type": "component",
       "component": "feature.moment-image",
       "repeatable": false
+    },
+    "seo": {
+      "type": "component",
+      "component": "settings.seo",
+      "repeatable": false
     }
   }
 }
