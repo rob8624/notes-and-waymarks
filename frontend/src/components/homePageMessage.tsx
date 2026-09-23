@@ -6,9 +6,9 @@ import { RichTextRenderer } from '#/components/richTextRenderer' //
 
 
 export function HomePageMessage ({data}: {data: BlocksContent}) {
-    return (<div className='lg:pb-4 font-albert pb-5  '> 
+    return (<h1 className='lg:pb-4 font-albert pb-5  '> 
     <RichTextRenderer data={data}/>
-      </div>)
+      </h1>)
     
     
 }

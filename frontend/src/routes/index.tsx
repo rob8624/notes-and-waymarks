@@ -80,7 +80,7 @@ function Home() {
               
             </div>
           <div className='sm:flex-1 border-b-2 sm:border-b-0 sm:border-r-2 pr-2'>
-            <h1 className='sm:mt-4 text-2xl font-albert font-bold bg-primary p-2 w-fit text-on-primary '>Articles</h1>
+            <h2 className='sm:mt-4 text-2xl font-albert font-bold bg-primary p-2 w-fit text-on-primary '>Articles</h2>
             <p className='font-cabin text-gray-500 italic'>{siteSettings.articleMessage}</p>
           </div>
           <div className='sm:flex-4 flex flex-col'>
