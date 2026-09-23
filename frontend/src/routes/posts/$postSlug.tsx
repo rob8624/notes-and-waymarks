@@ -39,6 +39,22 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
     const description = seo?.metaDescription ?? postData.summary
     const image = seo?.shareImage?.url ?? postData.featuredImage?.url
 
+    const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: postData.title,
+    description: postData.summary,
+    image: image ? [image] : undefined,
+    datePublished: postData.createdAt,
+    dateModified: postData.updatedAt,
+    author: postData.author
+      ? {
+          '@type': 'Person',
+          name: postData.author.name,
+        }
+      : undefined,
+  }
+
     return {
       meta: [
         { title },
@@ -50,11 +66,18 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: title },
         { name: 'twitter:description', content: description },
+        { name: 'twitter:image', content: image }, 
         ...(seo?.noIndex ? [{ name: 'robots', content: 'noindex' }] : []),
       ],
       links: seo?.canonicalUrl
         ? [{ rel: 'canonical', href: seo.canonicalUrl }]
         : [],
+         scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify(jsonLd),
+      },
+    ],
     }
   },
 
