@@ -6,6 +6,7 @@ import { MulltiImageBlock } from "./blocks/multiImage"
 import { CodeBlock } from "./blocks/codeBlock"
 
 import type { DynamicZoneBlock } from "#/types/block-types"
+import { Callout } from "./blocks/calloutBlock"
 
 
 
@@ -36,6 +37,8 @@ export function BlockRenderer({blocks}: BlockRendererProps) {
                 return <MulltiImageBlock {...block} key={block.id} />
             case 'blocks.code':
                 return <CodeBlock {...block} key={block.id} />
+             case 'blocks.callout':
+                return <Callout {...block} key={block.id} />
         }
     }
   

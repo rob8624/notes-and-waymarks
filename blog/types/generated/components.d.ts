@@ -1,5 +1,20 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksCallout extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_callouts';
+  info: {
+    displayName: 'Callout';
+  };
+  attributes: {
+    centered: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    content: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<'plugin::strapi-tiptap-editor.strapi-tiptap-editor'>;
+    style: Schema.Attribute.Enumeration<
+      ['Note', 'Tip ', 'Warning ', 'Danger', 'Success ']
+    >;
+  };
+}
+
 export interface BlocksCode extends Struct.ComponentSchema {
   collectionName: 'components_blocks_codes';
   info: {
@@ -166,6 +181,7 @@ export interface SettingsSeo extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export namespace Public {
     export interface ComponentSchemas {
+      'blocks.callout': BlocksCallout;
       'blocks.code': BlocksCode;
       'blocks.divider': BlocksDivider;
       'blocks.image': BlocksImage;

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_callouts",
+  "info": {
+    "displayName": "Callout"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "customField",
+      "customField": "plugin::strapi-tiptap-editor.strapi-tiptap-editor"
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "Note",
+        "Tip ",
+        "Warning ",
+        "Danger",
+        "Success "
+      ]
+    },
+    "centered": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

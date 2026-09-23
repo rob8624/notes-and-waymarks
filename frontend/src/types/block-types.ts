@@ -43,4 +43,13 @@ export interface CodeBlockType {
   language: string
 }
 
-export type DynamicZoneBlock = RichTextBlock | ImageBlock | DividerBlock | YoutubeBlockType | MultiImageBlockType | CodeBlockType
+
+export interface CalloutBlockType {
+  __component: 'blocks.callout'
+  id: number 
+  content : string
+  style : 'Note' | 'Tip' | 'Warning' | 'Danger' | 'Success' 
+  centered : boolean
+}
+
+export type DynamicZoneBlock = RichTextBlock | ImageBlock | DividerBlock | YoutubeBlockType | MultiImageBlockType | CodeBlockType | CalloutBlockType

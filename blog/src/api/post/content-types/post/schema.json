@@ -51,7 +51,8 @@
         "blocks.divider",
         "blocks.youtube",
         "blocks.multiple-images",
-        "blocks.code"
+        "blocks.code",
+        "blocks.callout"
       ]
     },
     "seo": {

@@ -135,6 +135,9 @@ const getDetail = async ({ slug }: { slug: string }) => {
           'blocks.code': {
             fields: ['*'],
           },
+           'blocks.callout': {
+            fields: ['*'],
+          },
        'blocks.multiple-images': {
   populate: {
     images: {
