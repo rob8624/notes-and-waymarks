@@ -5,8 +5,8 @@
 @theme {
   --font-cabin: "Cabin", sans-serif;
   --font-albert: "Albert Sans", sans-serif;
-  --color-primary: #E0FAFF;
-  --color-on-primary: #000000;
+  --color-primary: var(--primary);
+--color-on-primary: var(--on-primary);
   
 }
 

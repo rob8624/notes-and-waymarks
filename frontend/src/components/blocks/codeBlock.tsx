@@ -48,7 +48,7 @@ export function CodeBlock({ content, language }: CodeBlockType) {
   }, [language])
 
   return (
-    <div className="terminal">
+    <div className="terminal mb-5">
       <div className="terminal-header">
         <div className="terminal-dots">
           <span className="dot red" />

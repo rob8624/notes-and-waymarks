@@ -1,5 +1,11 @@
 
 import { Link } from '@tanstack/react-router'
+import {
+  faArrowLeft,
+  faArrowRight,
+} from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 
@@ -21,7 +27,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
     return (
         <>
         <div className='flex gap-5 justify-center'>
-            <div className='font-albert text-lg'>Page {page} of {totalPages}</div>
+            <div className='font-albert text-lg'>{page} / {totalPages}</div>
             
             <div className='font-albert text-lg'>
 
@@ -30,7 +36,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
                     to="."
                     search={(prev) => ({ ...prev, page: page - 1 })}
                 >
-                    Prev page
+                    <FontAwesomeIcon icon={faArrowLeft} />
                 </Link>
             )}
 
@@ -43,7 +49,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
                     to="."
                     search={(prev) => ({ ...prev, page: page + 1 })}
                 >
-                    Next page
+                    <FontAwesomeIcon icon={faArrowRight} />
                 </Link>
             )}
             
