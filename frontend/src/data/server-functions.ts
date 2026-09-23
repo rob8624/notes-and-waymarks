@@ -173,3 +173,20 @@ export const getAllCategoryData = createServerFn({method: 'GET'})
     const respose = await getAllCategories()
     return respose
 })
+
+
+
+//request to generate sitmap data
+
+const getAllPostSlugs = async () => {
+  return sdk.collection('posts').find({
+    fields: ['slug', 'updatedAt'],
+    filters: { publishedAt: { $notNull: true } }, // only published posts
+    pagination: { pageSize: 100 }, // bump if you ever exceed 100 posts
+  }) as Promise<IPostsResponse>
+}
+
+export const getAllPostSlugsData = createServerFn({ method: 'GET' }).handler(async () => {
+  const response = await getAllPostSlugs()
+  return response
+})
