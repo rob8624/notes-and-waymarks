@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitempapDotxmlRouteImport } from './routes/sitempap[.]xml'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostsPostSlugRouteImport } from './routes/posts/$postSlug'
 
-const SitempapDotxmlRoute = SitempapDotxmlRouteImport.update({
-  id: '/sitempap.xml',
-  path: '/sitempap.xml',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,41 +31,41 @@ const PostsPostSlugRoute = PostsPostSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/sitempap.xml': typeof SitempapDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/sitempap.xml': typeof SitempapDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/sitempap.xml': typeof SitempapDotxmlRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitempap.xml' | '/posts/$postSlug'
+  fullPaths: '/' | '/sitemap.xml' | '/posts/$postSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitempap.xml' | '/posts/$postSlug'
-  id: '__root__' | '/' | '/sitempap.xml' | '/posts/$postSlug'
+  to: '/' | '/sitemap.xml' | '/posts/$postSlug'
+  id: '__root__' | '/' | '/sitemap.xml' | '/posts/$postSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  SitempapDotxmlRoute: typeof SitempapDotxmlRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PostsPostSlugRoute: typeof PostsPostSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitempap.xml': {
-      id: '/sitempap.xml'
-      path: '/sitempap.xml'
-      fullPath: '/sitempap.xml'
-      preLoaderRoute: typeof SitempapDotxmlRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  SitempapDotxmlRoute: SitempapDotxmlRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   PostsPostSlugRoute: PostsPostSlugRoute,
 }
 export const routeTree = rootRouteImport
