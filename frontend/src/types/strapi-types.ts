@@ -122,6 +122,7 @@ export interface IPostData extends IStrapiBaseEntity {
   author: IAuthorData | null
   content: DynamicZoneBlock[]
   seo: seoType
+  pinned: boolean
 }
 
 

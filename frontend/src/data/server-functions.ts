@@ -73,14 +73,14 @@ export const getSiteSettings = createServerFn({method: 'GET'}).handler(async () 
 //call that gets minimum data for post cards etc
 const getPosts = async ({ page, category, order }: { page: number; category?: string; order: string }) => {
   return sdk.collection('posts').find({
-    fields: ['title', 'slug', 'summary'],           
+    fields: ['title', 'slug', 'summary', 'pinned'],           
     populate: {
       featuredImage: { fields: ['url', 'formats', 'alternativeText'] },
       categories: { fields: ['name', 'slug'] },
       
      },
     pagination: { page, pageSize: 3 },
-    sort: [`createdAt:${order}`],
+    sort: [`pinned:asc`, `createdAt:${order}`],
     ...(category && {
       filters: {
         categories: { slug: { $eq: category } },

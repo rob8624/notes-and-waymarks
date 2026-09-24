@@ -59,6 +59,10 @@
       "type": "component",
       "component": "settings.seo",
       "repeatable": false
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
