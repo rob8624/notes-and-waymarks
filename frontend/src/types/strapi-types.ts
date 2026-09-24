@@ -37,7 +37,7 @@ export interface IStrapiMedia {
   id: number
   documentId: string
   name: string
-  alternativeText: string | null
+  alternativeText: string | undefined
   caption: string | null
   focalPoint: IStrapiFocalPoint | null
   width: number

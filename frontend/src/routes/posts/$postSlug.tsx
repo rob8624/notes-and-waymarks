@@ -145,6 +145,8 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
       <div className="mt-3 text-center font-albert text-lg tracking-tight mb-10 text-gray-600">
         {postData.summary}
       </div>
+      { postData.featuredImage ? <img src={postData.featuredImage.formats?.medium?.url} alt={postData.featuredImage.alternativeText && ' '} />
+      : ''}
     </div>
 
     {/* Sidebar */}
