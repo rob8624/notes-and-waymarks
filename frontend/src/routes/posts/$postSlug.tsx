@@ -138,11 +138,11 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
 
     {/* Title */}
     <div className="order-2 flex flex-col items-center lg:col-start-2 lg:row-start-1">
-      <h1 className="text-center font-cabin text-4xl tracking-tight lg:text-5xl">
+      <h1 className="text-center font-cabin text-4xl tracking-tight lg:text-5xl pt-5 font-bold">
         {postData.title}
       </h1>
 
-      <div className="mt-3 text-center font-albert text-lg tracking-tight mb-10">
+      <div className="mt-3 text-center font-albert text-lg tracking-tight mb-10 text-gray-600">
         {postData.summary}
       </div>
     </div>
