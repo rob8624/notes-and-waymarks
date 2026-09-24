@@ -26,6 +26,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
 
     return (
         <>
+        <div className='flex flex-wrap justify-center gap-5'>
         <div className='flex gap-5 justify-center'>
             <div className='font-albert text-lg'>{page} / {totalPages}</div>
             
@@ -66,6 +67,7 @@ export function Pagination({ page, totalPages }:PaginationProps) {
         </Link>
         
         )}
+        </div>
         </div>
         </>
     )

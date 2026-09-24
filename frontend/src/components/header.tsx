@@ -89,13 +89,13 @@ useEffect(() => {
             <img className={`logo sm:self-end mt-5 ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
             </Link>
-             <nav className='sm:self-end'>
+             {/* <nav className='sm:self-end'>
                 <ul className='flex gap-2'>
                     {header.menu.map(item => 
                         <li key={item.id}>{item.label}</li>
                     )}
                 </ul>
-            </nav>
+            </nav> */}
         </div>
         <div className={`h-5 bg-primary rounded-2xl transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>
         <div className='flex justify-center flex-col items-center sm:block bg-white'>

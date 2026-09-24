@@ -109,7 +109,7 @@ function Home() {
             
             
             <div className=' hidden lg:flex flex-col gap-1'>
-              <div className='font-cabin text-2xl italic'>Article filter</div>
+              <div className='font-cabin text-sm'>Filter posts</div>
               <Category categories={categories} activeCategory={search.category} />
               
             </div>
