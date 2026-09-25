@@ -3,11 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-regular-svg-icons'
 import { useLightBox } from "#/context/lightboxContext"
 
-const sizeClasses = {
-  large: 'w-full',
-  medium: 'w-2/3',
-  small: 'w-1/3',
-}
+
 
 interface SingleImageProps {
   singleImage: ImageBlock['singleImage']
@@ -18,39 +14,51 @@ interface ImageCaptionProps {
   maxWidth?: boolean
 }
 
+type ImageSize = 'large' | 'medium' | 'small'
+
+const imageSizes: Record<ImageSize, string> = {
+  large: 'w-[100%]',
+  medium: 'w-[70%]',
+  small: 'w-[60%]',
+}
+
 const SingleImage = ({ singleImage }: SingleImageProps) => {
   const { image, settings } = singleImage
   const { imageSize, imageBorder, roundedBorder, grayscale } = settings
   const { openLightbox } = useLightBox()
 
-  const src = image.formats?.[imageSize]?.url || image.url
+  const src = image.formats?.medium?.url || image.url
+  
 
   const imageClasses = [
     'block',
-    'w-full',
+    
     imageBorder && 'border-4 border-black',
     roundedBorder && 'rounded-2xl',
     grayscale && 'grayscale',
+    
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
-    <div className="relative">
+    
+    <div className="relative flex justify-center">
       <img
         src={src}
         alt={image.alternativeText ?? ''}
-        className={imageClasses}
+        className={`${imageClasses} ${imageSizes[imageSize]}`}
       />
 
       <button
         onClick={() => openLightbox(image.id)}
-        className="absolute bottom-2 right-2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+        className="absolute bottom-2 right-2 z-10 rounded-full bg-black/50 p-2 text-white hover:bg-black/70 "
         aria-label="Open image in lightbox"
       >
         <FontAwesomeIcon icon={faCamera} />
       </button>
     </div>
+   
   )
 }
 
@@ -81,8 +89,8 @@ export function SingleImageBlock({ singleImage }: ImageBlock) {
 
   // Width of the image/caption group
   const imageWidth = [
-    sizeClasses[singleImage.settings.imageSize],
-    'sm:max-w-[70%]',
+    imageSizes[singleImage.settings.imageSize],
+    'sm:max-w-[90%]',
   ].join(' ')
 
   switch (captionPosition) {
