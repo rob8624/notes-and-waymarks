@@ -155,6 +155,8 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
       publishedDate={postData.createdAt}
       updatedDate={postData.updatedAt}
       categories={postData.categories}
+      title={postData.title}
+      slug={postData.slug}
       className="
         order-3
         lg:col-start-1

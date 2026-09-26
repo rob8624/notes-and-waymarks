@@ -1,5 +1,5 @@
 import type { IAuthorData, ICategoriesData } from "#/types/strapi-types"
-
+import { ShareButtons } from "./shareButtons"
 
 
 
@@ -9,11 +9,13 @@ interface PostSideBarProps  {
     updatedDate: string
     className: string
     categories: ICategoriesData[]
+    title: string
+    slug: string
 }
 
 
 
-export function PostSideBar({author, className, publishedDate, categories, updatedDate}:PostSideBarProps) {
+export function PostSideBar({author, className, publishedDate, categories, updatedDate, title, slug}:PostSideBarProps) {
     
     const {name, position,} = author ?? {}
     
@@ -71,8 +73,11 @@ export function PostSideBar({author, className, publishedDate, categories, updat
                 
             </div>
             <div className="mt-2">
-                <button className="p-1 bg-primary border-2 text-on-primary">Share</button>
+                <ShareButtons title={title}  url={`https://www.notesandwaymarks.com/posts/${slug}`}/>
             </div>
+            {/* <div className="mt-2">
+                <button className="p-1 bg-primary border-2 text-on-primary">Share</button>
+            </div> */}
 
             
         </div>
