@@ -67,7 +67,7 @@ function Home() {
   
   return (
     
-      <main className='grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[3fr_1fr] lg:grid-rows-1 pt-10 '>
+      <main className='grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[3fr_1fr] lg:grid-rows-1 pt-1 md:pt-10 '>
         
         {/* artlices */}
         <section className='order-1 md:order-1  flex flex-col lg:flex-row gap-2 mr-5 sm:border-r-2'>

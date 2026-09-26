@@ -97,7 +97,7 @@ useEffect(() => {
                 </ul>
             </nav> */}
         </div>
-        <div className={`h-5 bg-primary rounded-2xl transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>
+        <div className={`h-2 md:h-4 bg-primary  transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>
         <div className='flex justify-center flex-col items-center sm:block bg-white'>
             <div className='font-cabin text-lg sm:text-2xl text-gray-600'>{header.heading}</div>
             <ThemePicker />
