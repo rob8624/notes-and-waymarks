@@ -12,8 +12,9 @@ export function PostCard({title, slug, categories, summary, featuredImage}: IPos
         <div className="flex flex-col m-2 lg:flex-row md:justify-center md:items-center flex-wrap">
         <div className="sm:pl-10 grid grid-rows-[3fr_1fr] sm:grid-cols-[2fr_1fr] sm:grid-rows-1 
         bg-primary/60  border-2 rounded-md min-h-60 md:w-[700px] lg:w-[500px]">
-            
-                <div className='bg-white  flex flex-col'>
+              
+                <Link to="/posts/$postSlug" params={{ postSlug: slug }} className='bg-white  flex flex-col'>
+                    
                     <div className='border-b-2 text-3xl font-cabin p-2 bg-primary/30'>{title}</div>
                     <div className='p-2 flex flex-col justify-between h-full'>
                         <div className='text-sm font-albert'>{summary}</div>
@@ -23,7 +24,8 @@ export function PostCard({title, slug, categories, summary, featuredImage}: IPos
                         </div>
 
                     </div>
-                </div>
+                    
+                </Link>
                 
                 <div className='justify-self-end self-end flex justify-between w-full'>
                     <div className='flex sm:hidden gap-2 flex-wrap mb-2 '>

@@ -20,22 +20,30 @@ interface ShareButtonProps {
 
 export function ShareButtons({ title, url }: ShareButtonProps) {
   return (
-    <div className="flex items-center gap-3">
-      <XShareButton url={url} title={title}>
-        <XIcon size={32} round />
-      </XShareButton>
+    <div className="flex items-center sm:gap-3">
+      <div className="scale-75 sm:scale-100">
+        <XShareButton url={url} title={title}>
+          <XIcon size={32} round />
+        </XShareButton>
+      </div>
 
-      <FacebookShareButton url={url} title={title}>
-        <FacebookIcon size={32} round />
-      </FacebookShareButton>
+      <div className="scale-75 sm:scale-100">
+        <FacebookShareButton url={url} title={title}>
+          <FacebookIcon size={32} round />
+        </FacebookShareButton>
+      </div>
 
-      <LinkedinShareButton url={url} title={title}>
-        <LinkedinIcon size={32} round />
-      </LinkedinShareButton>
+      <div className="scale-75 sm:scale-100">
+        <LinkedinShareButton url={url} title={title}>
+          <LinkedinIcon size={32} round />
+        </LinkedinShareButton>
+      </div>
 
-      <WhatsappShareButton url={url} title={title}>
-        <WhatsappIcon size={32} round />
-      </WhatsappShareButton>
+      <div className="scale-75 sm:scale-100">
+        <WhatsappShareButton url={url} title={title}>
+          <WhatsappIcon size={32} round />
+        </WhatsappShareButton>
+      </div>
     </div>
   )
 }
