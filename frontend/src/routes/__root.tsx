@@ -101,7 +101,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider>
-          <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] p-1">
+          <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto]  ">
             <Header />
             {children}
             <Footer />

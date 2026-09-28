@@ -3,6 +3,53 @@ import { Route as RootRoute } from '@/routes/__root'
 import { Link } from '@tanstack/react-router'
 import { useTheme } from '#/context/themeContext'
 import type { Theme } from '#/context/themeContext'
+import { faChevronLeft, faChevronDown, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+
+
+function HeaderMenu() {
+  const [ showMenu, setShowMenu ] = useState(false)
+  const { header } = RootRoute.useLoaderData()
+
+ 
+
+
+return (
+  <nav className="sm:self-end flex flex-col sm:flex-row justify-center items-center">
+  <div
+    onClick={() => setShowMenu(!showMenu)}
+    className="sm:order-2 sm:pl-2 sm:pr-5"
+  >
+    {showMenu ? (
+  <FontAwesomeIcon icon={faXmark} />
+) : (
+  <>
+   <FontAwesomeIcon icon={faChevronDown} className="sm:!hidden" />
+<FontAwesomeIcon icon={faChevronLeft} className="!hidden sm:!block pb-1" />
+  </>
+)}
+  </div>
+
+  <div
+    className={`sm:order-1 grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+      showMenu ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+    }`}
+  >
+    <ul className="flex gap-2 overflow-hidden">
+      {header.menu.map((item) => (
+        <li key={item.id}>{item.label}</li>
+      ))}
+    </ul>
+  </div>
+</nav>
+)
+
+}
+
+
+
 
 
 
@@ -11,9 +58,11 @@ type Scroll = boolean | undefined
 
 export default function Header() {
     const { header } = RootRoute.useLoaderData()
+    
     const  [isBouncing, setIsBouncing] = useState<Bounce>(false)
    const [Isscrolling, setIsScrolling] = useState<Scroll>(false)
     const { theme, selectTheme } = useTheme()
+    
 
     const themes: Theme[] = ['blue', 'orange', 'black']
 
@@ -67,7 +116,7 @@ useEffect(() => {
     return(
       <>
       <div
-  className={`sticky top-0 z-10 bg-white pt-2 transition-[height] duration-300 ease-out ${
+  className={`sticky top-0 z-10  pt-2 transition-[height] duration-300 ease-out ${
     Isscrolling ? 'h-16' : 'h-32 md:h-26'
   }`}
 >
@@ -89,13 +138,7 @@ useEffect(() => {
             <img className={`logo sm:self-end mt-5 ${isBouncing ? 'animate-custom-bounce' : null}`} src={header.logo.formats?.thumbnail?.url}
             alt={header.logo.alternativeText ?? "Notes and Waymarks logo"}/>
             </Link>
-             {/* <nav className='sm:self-end'>
-                <ul className='flex gap-2'>
-                    {header.menu.map(item => 
-                        <li key={item.id}>{item.label}</li>
-                    )}
-                </ul>
-            </nav> */}
+            <HeaderMenu />
         </div>
         <div className={`h-2 md:h-4 bg-primary  transition-all duration-150 ease-out ${isBouncing ? 'w-0' : 'w-full'}`}></div>
         <div className='flex justify-center flex-col items-center sm:block bg-white'>

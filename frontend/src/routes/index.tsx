@@ -67,7 +67,7 @@ function Home() {
   
   return (
     
-      <main className='grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[3fr_1fr] lg:grid-rows-1 pt-1 md:pt-10 '>
+      <main className='grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-[3fr_1fr] lg:grid-rows-1 pt-1 md:pt-10 p-1 '>
         
         {/* artlices */}
         <section className='order-1 md:order-1  flex flex-col lg:flex-row gap-2 mr-5 sm:border-r-2'>
@@ -82,7 +82,9 @@ function Home() {
           <div className='sm:flex-1 border-b-2 sm:border-b-0 sm:border-r-2 pr-2'>
             <h2 className='sm:mt-4 text-2xl font-albert font-bold bg-primary p-2 w-fit text-on-primary '>Articles</h2>
             <p className='font-cabin text-gray-500 italic'>{siteSettings.articleMessage}</p>
+            
           </div>
+          
           <div className='sm:flex-4 flex flex-col'>
             <Pagination page={search.page} totalPages={totalPages}/>
  

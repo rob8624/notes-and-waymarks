@@ -128,7 +128,7 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
 
  
   return (
-  <div className="mt-10 flex flex-col gap-2 lg:grid lg:grid-cols-[20%_1fr] lg:grid-rows-[auto_1fr]">
+  <div className="mt-10 flex flex-col gap-2 lg:grid lg:grid-cols-[20%_1fr] lg:grid-rows-[auto_1fr] p-1">
     {/* Mobile category */}
     <div className="order-1 block w-fit p-1 text-xs uppercase text-primary lg:hidden">
       <div className='flex gap-2 flex-wrap'>
