@@ -28,9 +28,10 @@ function RouteComponent() {
           .map((cat) => (
             <section key={cat.documentId}>
               <h2 className="text-xl font-bold mb-2">{cat.category}</h2>
-              <ul className="flex flex-col">
+              <ul className="flex flex-wrap gap-2 justify-center ">
                 {cat.links?.map((link) => (
                     <>
+                    <div className='flex flex-col '>
                   <li key={link.documentId}>
                     <a
                       href={link.url}
@@ -44,7 +45,8 @@ function RouteComponent() {
                       <p className="text-sm">{link.description}</p>
                     )}
                   </li>
-                  <img src={link.image?.formats?.small?.url} className='rounded-2xl  shadow-2xl mt-5 mb-10 w-80 shrink-0 object-cover'/>
+                  <img src={link.image?.formats?.small?.url} className='rounded-2xl  shadow-2xl mt-5 mb-10 w-80 h-50 shrink-0 object-cover'/>
+                  </div>
                   </>
                 ))}
               </ul>
