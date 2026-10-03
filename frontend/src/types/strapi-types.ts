@@ -70,7 +70,7 @@ export interface IStrapiBaseEntity {
 interface IMenuItem {
   id: number
   label: string
-  url: string
+  url: '/' |'/links'
 }
 
 interface IHeaderData extends IStrapiBaseEntity {
@@ -163,6 +163,28 @@ export interface IImageSettings  {
 export interface IImageCaption {
   caption: string
   position: 'top' |'bottom' | 'left' | 'right'
+}
+
+
+export interface ILinkCategory {
+  id: number,
+  documentId: number
+  category: string
+  links: Array<ILink>
+  
+}
+
+
+export interface ILink {
+  label: string
+  documentId: number
+  url: string
+  description? : string
+  image? : IStrapiMedia
+  link_categories? : Array<ILinkCategory>
+  createdAt: string
+  publishedAt: string
+
 }
 
 // Wrapper for Strapi "collection type" responses (Posts, Categories)

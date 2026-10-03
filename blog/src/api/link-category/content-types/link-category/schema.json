@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "link_categories",
+  "info": {
+    "singularName": "link-category",
+    "pluralName": "link-categories",
+    "displayName": "link category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "string"
+    },
+    "links": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::link.link",
+      "inversedBy": "link_categories"
+    }
+  }
+}

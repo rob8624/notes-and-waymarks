@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LinksRouteImport } from './routes/links'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostsPostSlugRouteImport } from './routes/posts/$postSlug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LinksRoute = LinksRouteImport.update({
+  id: '/links',
+  path: '/links',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const PostsPostSlugRoute = PostsPostSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/links': typeof LinksRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/links': typeof LinksRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/links': typeof LinksRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/posts/$postSlug': typeof PostsPostSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/posts/$postSlug'
+  fullPaths: '/' | '/links' | '/sitemap.xml' | '/posts/$postSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/posts/$postSlug'
-  id: '__root__' | '/' | '/sitemap.xml' | '/posts/$postSlug'
+  to: '/' | '/links' | '/sitemap.xml' | '/posts/$postSlug'
+  id: '__root__' | '/' | '/links' | '/sitemap.xml' | '/posts/$postSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LinksRoute: typeof LinksRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PostsPostSlugRoute: typeof PostsPostSlugRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/links': {
+      id: '/links'
+      path: '/links'
+      fullPath: '/links'
+      preLoaderRoute: typeof LinksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LinksRoute: LinksRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PostsPostSlugRoute: PostsPostSlugRoute,
 }

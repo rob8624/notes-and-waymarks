@@ -101,10 +101,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <ThemeProvider>
-          <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto]  ">
-            <Header />
-            {children}
-            <Footer />
+          <div className="min-h-screen w-full max-w-7xl mx-auto grid grid-rows-[auto_1fr_auto] ">
+            
+              <Header />
+              <div className='pt-1 md:pt-10 p-1'>
+                {children}
+              </div>
+              <Footer />
+            
           </div>
         </ThemeProvider>
         <TanStackDevtools

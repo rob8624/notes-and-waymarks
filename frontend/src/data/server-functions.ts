@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { sdk } from "./strapi-sdk"
 
-import type { IHeaderResponse, IFooterResponse, ISiteSettingsResponse, IPostsResponse, ICategoriesResponse } from '#/types/strapi-types';
+import type { ILink, ILinkCategory, IHeaderResponse, IFooterResponse, ISiteSettingsResponse, IPostsResponse, ICategoriesResponse } from '#/types/strapi-types';
 
 
 
@@ -190,3 +190,32 @@ export const getAllPostSlugsData = createServerFn({ method: 'GET' }).handler(asy
   const response = await getAllPostSlugs()
   return response
 })
+
+
+
+const getLinks = async (): Promise<ILink[]> => {
+  const res = await sdk.collection('links').find({
+    populate: {
+      image: true,
+      link_categories: true,
+    },
+  })
+
+  return res.data as unknown as ILink[]
+}
+
+export const getLinkData = createServerFn({ method: 'GET' }).handler(
+  async () => {
+    return await getLinks()
+  },
+)
+
+export const getCategories = async (): Promise<ILinkCategory[]> => {
+  const res = await sdk.collection('link-categories').find({
+    populate: {
+      links: { populate: ['image'] },
+    },
+  })
+  return res.data as unknown as ILinkCategory[]
+}
+

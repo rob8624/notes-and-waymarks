@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 
+
 function HeaderMenu() {
   const [ showMenu, setShowMenu ] = useState(false)
   const { header } = RootRoute.useLoaderData()
@@ -39,7 +40,9 @@ return (
   >
     <ul className="flex gap-2 overflow-hidden">
       {header.menu.map((item) => (
-        <li key={item.id}>{item.label}</li>
+        <Link to={`${item.url}`}>
+        <li key={item.id} onClick={() => setShowMenu(false)} className='font-cabin tracking-tight hover:font-bold'>{item.label}</li>
+        </Link>
       ))}
     </ul>
   </div>
@@ -116,7 +119,7 @@ useEffect(() => {
     return(
       <>
       <div
-  className={`sticky top-0 z-10  pt-2 transition-[height] duration-300 ease-out ${
+  className={`sticky top-0 z-10 bg-white pt-2 transition-[height] duration-300 ease-out ${
     Isscrolling ? 'h-16' : 'h-32 md:h-26'
   }`}
 >
