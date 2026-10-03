@@ -56,7 +56,7 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
   }
 
     return {
-      meta: [
+     meta: [
         { title },
         { name: 'description', content: description },
         { property: 'og:title', content: title },
@@ -73,7 +73,7 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
         ? [{ rel: 'canonical', href: seo.canonicalUrl }]
         : [],
          scripts: [
-      {
+      { 
         type: 'application/ld+json',
         children: JSON.stringify(jsonLd),
       },

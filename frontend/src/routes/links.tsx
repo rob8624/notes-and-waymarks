@@ -6,6 +6,38 @@ import type { ILink } from '#/types/strapi-types'
 
 export const Route = createFileRoute('/links')({
   loader: () => getCategories(),
+  head: () => ({
+    meta: [
+      { title: 'Links | Notes and Waymarks' },
+      {
+        name: 'description',
+        content:
+          'The best links from around the net, hand-picked by the Notes and Waymarks blog.',
+      },
+      { name: 'robots', content: 'index, follow' },
+
+      // Open Graph (Facebook, LinkedIn, Discord, Slack previews)
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Notes and Waymarks' },
+      { property: 'og:title', content: 'Links | Notes and Waymarks' },
+      {
+        property: 'og:description',
+        content: 'The best links from around the net, hand-picked by Notes and Waymarks.',
+      },
+      { property: 'og:url', content: 'https://notesandwaymarks/links' },
+      { property: 'og:image', content: 'https://notesandwaymarks/og-links.png' },
+
+      // Twitter / X
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Links | Notes and Waymarks' },
+      {
+        name: 'twitter:description',
+        content: 'The best links from around the net, hand-picked by Notes and Waymarks.',
+      },
+      { name: 'twitter:image', content: 'https://notesandwaymarks/og-links.png' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://notesandwaymarks/links' }],
+  }),
   component: RouteComponent,
 })
 
