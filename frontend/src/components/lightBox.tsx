@@ -30,7 +30,7 @@ export function Lightbox() {
             onClick={(e) => e.stopPropagation()}
             className="max-h-[90vh] max-w-[90vw]"
         />
-        {activeImage.caption && <div className="bg-white p-2 sm:p-4 text-gray-600 text-xs sm:text-base">{activeImage.caption}</div>}
+        {activeImage.caption && <div className="bg-white p-2 sm:p-4 text-gray-600 text-xs sm:text-base max-w-[90vw]">{activeImage.caption}</div>}
       </div>
 
       <button
