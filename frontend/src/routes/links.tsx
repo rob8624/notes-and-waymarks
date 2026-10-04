@@ -59,29 +59,33 @@ function RouteComponent() {
           .filter((cat) => cat.links?.length)
           .map((cat) => (
             <section key={cat.documentId}>
-              <h2 className="text-xl font-bold mb-2">{cat.category}</h2>
-              <ul className="flex flex-wrap gap-2 justify-center ">
-                {cat.links?.map((link) => (
-                    <>
-                    <div className='flex flex-col '>
-                  <li key={link.documentId}>
-                    <a
-                      href={link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline"
-                    >
-                      {link.label}
-                    </a>
-                    {link.description && (
-                      <p className="text-sm">{link.description}</p>
-                    )}
-                  </li>
-                  <img src={link.image?.formats?.small?.url} className='rounded-2xl  shadow-2xl mt-5 mb-10 w-80 h-50 shrink-0 object-cover'/>
-                  </div>
-                  </>
-                ))}
-              </ul>
+              <h2 className="text-2xl font-cabin font-bold mb-10">{cat.category}</h2>
+              <ul className="flex flex-wrap gap-6 justify-center">
+  {cat.links?.map((link) => (
+    <li key={link.documentId} className="flex w-80 flex-col items-center">
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noreferrer"
+        className="underline font-cabin"
+      >
+        {link.label}
+      </a>
+
+      {link.description && (
+        <p className="text-sm line-clamp-3 min-h-15">
+          {link.description}
+        </p>
+      )}
+
+      {link.image && <img
+        src={link.image?.formats?.small?.url ?? link.image?.url}
+        alt={link.image?.alternativeText ?? link.label}
+        className="rounded-2xl shadow-2xl mt-5 mb-10 w-80 h-52 shrink-0 object-cover"
+      />}
+    </li>
+  ))}
+</ul>
             </section>
           ))}
       </div>
