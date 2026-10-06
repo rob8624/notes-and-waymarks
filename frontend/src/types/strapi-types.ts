@@ -123,6 +123,8 @@ export interface IPostData extends IStrapiBaseEntity {
   content: DynamicZoneBlock[]
   seo: seoType
   pinned: boolean
+  comments: Array<IComment>
+  commentsEnabled: boolean
 }
 
 
@@ -186,6 +188,17 @@ export interface ILink {
   publishedAt: string
 
 }
+
+
+export interface IComment extends IStrapiBaseEntity {
+  author: string
+  email: string
+  content: string
+ 
+  visible: boolean
+}
+
+
 
 // Wrapper for Strapi "collection type" responses (Posts, Categories)
 // data is an array, meta contains real pagination info

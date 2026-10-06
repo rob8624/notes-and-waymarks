@@ -6,6 +6,7 @@ import { PostSideBar } from '#/components/postSideBar'
 import { LightBoxProvider } from '#/context/lightboxContext'
 import type { IStrapiMedia } from '#/types/strapi-types'
 import { Lightbox } from '#/components/lightBox'
+import { Comments } from '#/components/comment'
 
 
 const slugSchema = z
@@ -32,6 +33,7 @@ export const Route = createFileRoute(`/posts/$postSlug`)({
   },
   head: ({ loaderData }) => {
     const postData = loaderData?.post?.data?.[0]
+    
     if (!postData) return {}
 
     const seo = postData.seo
@@ -88,7 +90,8 @@ function RouteComponent() {
 
  const { post } = Route.useLoaderData()
  const postData = post.data[0]
-  
+ const comments = postData.comments
+ console.log(postData) 
  if (!postData) {
     return <div>Post not found</div>
   }
@@ -171,6 +174,9 @@ const getGalleryImages = (): Array<IStrapiMedia> => {
     <article className="order-4 post-content lg:col-start-2 lg:row-start-2">
       <LightBoxProvider images={galleryImages}>
         <BlockRenderer blocks={postData.content} />
+        {postData.commentsEnabled ?
+        <Comments submitted={comments} enabled={postData.commentsEnabled} postId={postData.documentId} /> : <div>Comments disabeld for this post</div>
+        }
         <Lightbox />
       </LightBoxProvider>
     </article>

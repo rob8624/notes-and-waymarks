@@ -109,6 +109,7 @@ const getDetail = async ({ slug }: { slug: string }) => {
       categories: { fields: ['name', 'slug'] },
       author: { fields: ['name', 'position'] },
       seo: { populate: { shareImage: true } },
+      comments: true,
       content: {
         on: {
           'blocks.richtext': {
@@ -145,6 +146,7 @@ const getDetail = async ({ slug }: { slug: string }) => {
     },
   },
 },
+
         },
       },
     },
